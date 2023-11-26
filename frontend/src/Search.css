@@ -61,18 +61,11 @@
   width: 1285px;
 }
 
-.search-simple .text-wrapper-2 {
-  color: #2a2d34;
-  font-family: "M PLUS Rounded 1c", Helvetica;
-  font-size: 29px;
-  font-weight: 500;
-  height: 43px;
-  left: 90px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 27px;
-  width: 275px;
+.search-simple .search-box {
+  height: inherit;
+  position: relative;
+  width: 1080px;
+
 }
 
 .search-simple .search {
