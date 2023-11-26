@@ -23,10 +23,11 @@
 
 .search-simple .ticketopia {
   height: 59px;
-  left: 0px;
+  left: 8px;
   position: absolute;
-  top: 0px;
+  top: 5px;
   width: (223+77)px;
+  scale: 1.15;
 }
 
 .search-simple .text-wrapper {
@@ -59,13 +60,22 @@
   height: 97px;
   position: relative;
   width: 1285px;
+  transition: transform 0.3s ease; 
 }
 
 .search-simple .search-box {
   height: inherit;
   position: relative;
   width: 1080px;
+}
 
+.search-simple .overlap-group:focus-within {
+  border: 2px solid #0391cb;
+  transform: translate(-210px, -530px);
+}
+
+.search-simple:focus-within .text-wrapper{
+  visibility: hidden;
 }
 
 .search-simple .search {
@@ -75,3 +85,5 @@
   top: 14px;
   width: 69px;
 }
+
+
