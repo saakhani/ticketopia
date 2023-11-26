@@ -5,6 +5,7 @@ import "./images.js";
 import images from "./images.js";
 import UserInputBox from "./UserInputBox.js";
 
+
   
 function Search(){
   return (
@@ -21,7 +22,6 @@ function Search(){
             <div className="search-box">
               <UserInputBox />
             </div>
-            <img className="search" alt="Search" src= {images.search} />
           </div>
         </div>
       </div>
