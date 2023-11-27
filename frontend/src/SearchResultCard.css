@@ -1,0 +1,32 @@
+/* SearchResultCard.css */
+.search-result-card {
+    width: 320px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  .result-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .result-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  
+  .result-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+  }
+
+
+  

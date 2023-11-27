@@ -17,12 +17,9 @@ function UserInputBox() {
     setIsTextBoxFocused(true);
   };
 
-  const handleTextBoxBlur = () => {
-    setIsTextBoxFocused(false);
-  };
 
   const searchButtonEvent = () => {
-    alert('User input: ${inputValue}')
+    alert(`User Input: ${inputValue}`);
   };
 
 
@@ -30,7 +27,7 @@ function UserInputBox() {
 
   return (
     <div className='search-wrapper'>
-      <div className='search-box'>
+      <div className='search-input'>
       {/* Input box with an event handler */}
       <input
         className='input-box'
@@ -38,16 +35,16 @@ function UserInputBox() {
         value={inputValue}
         onChange={handleInputChange}
         onFocus={handleTextBoxFocus}
-        onBlur={handleTextBoxBlur}
         placeholder="search for an event"
       />
       {/* Display the input value */}
       {/* <p>You typed: {inputValue}</p> */}
       </div>
-    <button onClick={searchButtonEvent}
+      <button
         className="search-button"
-        disabled={!isTextBoxFocused}
-      >
+        onClick={searchButtonEvent}
+        //</div>disabled={!isTextBoxFocused}
+        >
         <img 
             className="search-image"
             src={images.search}
