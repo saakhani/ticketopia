@@ -6,6 +6,9 @@ import './SearchResultCard.css'; // Import the CSS file
 const SearchResultCard = ({ title, description, link }) => {
   return (
     <div className="search-result-card">
+      <div className="result-image">
+        <img src="https://fakeimg.pl/280x160" alt="placeholder" />
+      </div>
       <div className="result-title">{title}</div>
       <div className="result-description">{description}</div>
       <a href={link} className="result-link" target="_blank" rel="noopener noreferrer">

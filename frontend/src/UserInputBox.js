@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import "./UserInputBox.css";
 import images from './images.js';
+import PropTypes from "prop-types";
 
 
-function UserInputBox() {
+function UserInputBox({ onSearch, onInputChange }) {
   // State to manage the input value
   const [inputValue, setInputValue] = useState('');
 
   // Event handler to update the input value
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+    onInputChange(event.target.value);
   };
-
-  const [isTextBoxFocused, setIsTextBoxFocused] = useState(false);
-  const handleTextBoxFocus = () => {
-    setIsTextBoxFocused(true);
-  };
-
 
   const searchButtonEvent = () => {
-    alert(`User Input: ${inputValue}`);
+    onSearch(inputValue);
   };
 
-
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      onSearch(inputValue);
+    }
+  };
 
 
   return (
@@ -34,8 +34,8 @@ function UserInputBox() {
         type="text"
         value={inputValue}
         onChange={handleInputChange}
-        onFocus={handleTextBoxFocus}
         placeholder="search for an event"
+        onKeyPress={handleKeyPress}
       />
       {/* Display the input value */}
       {/* <p>You typed: {inputValue}</p> */}
@@ -55,5 +55,10 @@ function UserInputBox() {
     </div>
   );
 }
+
+UserInputBox.propTypes = {
+  onInputChange: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
+};
 
 export default UserInputBox;
