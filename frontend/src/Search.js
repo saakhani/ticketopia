@@ -5,6 +5,7 @@ import "./images.js";
 import images from "./images.js";
 import UserInputBox from "./UserInputBox.js";
 import SearchResultCard from "./SearchResultCard.js";
+import { Outlet, Link } from "react-router-dom";
 
   
 const Search = () => {

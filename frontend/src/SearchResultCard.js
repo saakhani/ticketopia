@@ -2,6 +2,7 @@
 
 import React from 'react';
 import './SearchResultCard.css'; // Import the CSS file
+import { Outlet, Link } from "react-router-dom";
 
 const SearchResultCard = ({ title, venue, description, link }) => {
   return (
@@ -12,9 +13,9 @@ const SearchResultCard = ({ title, venue, description, link }) => {
       <div className="result-title">{title}</div>
       <div className="result-venue">{venue}</div>
       <div className="result-description">{description}</div>
-      <a href={link} className="result-link" target="_blank" rel="noopener noreferrer">
+      <Link to="/EventPage" className="result-link">
         Book Now
-      </a>
+      </Link>
     </div>
   );
 };
