@@ -1,5 +1,6 @@
 .search-wrapper .search-input {
     padding-left: 90px;
+
 }
 
 .search-wrapper .input-box {
@@ -53,12 +54,12 @@ input:focus {
 	cursor: pointer;
 }
 
-.search-wrapper:focus-within .search-button {
+.search-simple:focus-within .search-button {
     cursor: pointer;
     transform: translateX(1220px);
 }
 
-.search-wrapper:focus-within .search-input{
+.search-simple:focus-within .search-input{
     padding-left: 25px;
 }
 
