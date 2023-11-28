@@ -1,3 +1,11 @@
+
+
+.event-body {
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+}
+
 h1 {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -8,7 +16,15 @@ h1 {
     color: #2a2d34;
 }
 
+h3 {
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-weight: 500;
+    color: #2a2d34;
+    margin-left: 10px;
+}
+
 .event-details {
+    display: inline-block;
     background-color: #fffdfd;
     margin-top: 20px;
     margin-left: 30px;
@@ -37,6 +53,7 @@ h1 {
     color: #0391cb;
     font-size: 42px;
     margin-bottom: 2px;
+    font-family: "M PLUS Rounded 1c", Helvetica;
 }
 
 .event-venue{
@@ -44,13 +61,15 @@ h1 {
     color: #2a2d34;
     font-size: 24px;
     margin-top: 0px;
+    font-family: "M PLUS Rounded 1c", Helvetica;
 }
 
 .event-description{
-    font-weight: 500;
+    font-weight: 400;
     font-size: 17px;
     margin-top: 25px;
     color: #2a2d34;
+    font-family: "M PLUS Rounded 1c", Helvetica;
 }
 
 .location-icon{
@@ -66,5 +85,141 @@ h1 {
     vertical-align: middle;
 }
 
+.book-event {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    border: #0391cb 1px solid;
+    background-color: #fffdfd;
+    margin-top: 20px;
+    margin-left: 60px;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 12px;
+    height: auto;
+    width: 1060px;
+    padding: 10px;
+    
+}
+
+.no-times {
+    width: 100%;
+    font-size: 18px;
+    color: #2a2d34;
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-weight: 500;
+    vertical-align: middle;
+    text-align: center;
+
+}
+
+.date-input{
+    background-color: #0391cb;
+    border-radius: 54px;
+    color: #ffffff;
+    border: 0px;
+    outline: 0px;
+}
+
+.time-selector {
+    display: flex;
+    overflow-x: scroll;
+    width: 600px;
+    margin-left: auto;
+    background-color: #ececec;
+    border-radius: 12px;
+    padding: 10px;
+}
 
 
+.date-custom-input{
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #0391cb;
+    border: 0;
+    color: ffffff;
+    border-radius: 54px;
+    height: 50px;
+    width: 300px;
+    margin-left: 10px;
+    padding: 6px;
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    text-align: center;
+}
+
+
+.time-selector .deselected, .time-selector .selected{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 54px;
+    height: 50px;
+    min-width: 105px;
+    padding: 6px;
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: normal;
+    text-align: center;
+}
+
+.time-selector .deselected{
+    background-color: #ffffff;
+    border: 2px solid #0391cb;
+    color: #0391cb;
+}
+
+.time-selector .deselected:hover{
+    background-color: #a9e7ff;
+    border: 2px solid #0391cb;
+    color: 03191cb;
+}
+
+.time-selector .selected{
+    background-color: #0391cb;
+    border: 0;
+    color: #ffffff;
+}
+
+
+.checkout-button {         
+    cursor: pointer;
+    background-color: #0391cb;
+    border-radius: 54px;
+    color: #ffffff;
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 18px;
+    font-weight: 600;
+    height: 50px;
+    width: 110px;
+    margin-left: auto;
+    letter-spacing: 0;
+    line-height: normal;
+    text-align: center;
+    outline: 0;
+    border: 0;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.date-and-time {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    padding: 20px
+}
+
+
+select, input[type='number'] {
+    margin: 10px 0;
+}
