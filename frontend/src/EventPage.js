@@ -29,7 +29,9 @@ const EventPage = () => {
                 </h2>
                 <div className="event-venue">
                     <img className="location-icon" alt="icon for location" src={images.location_icon}/>
-                    {eventDetails.venue}
+                    <div className="venue-name">
+                        {eventDetails.venue}
+                    </div>
                 </div>
                 <p className="event-description">
                     {eventDetails.description}
