@@ -4,12 +4,31 @@ import { addDays } from "date-fns";
 import images from "./images.js";
 import "./EventPage.css";
 import './custom-datepicker.css';
+import searchDataMain from './DummyData.js';
 
 import Header from "./Header.js";
+import { useParams } from 'react-router-dom';
 
-const EventPage = (props) => {
-    const { state } = props.location;
-    const { eventDetails} = state;
+const EventPage = () => {
+    const params = useParams();
+    const eventID = params.EventID;
+    const searchData = [
+        {
+          eventID: 1,
+          title: "Event 1",
+          venue: "Venue 1",
+          description: "Description 1",
+          imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
+        },
+        {
+          eventID: 2,
+          title: "Event 2",
+          venue: "Venue 2",
+          description: "Description 2",
+          imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
+        }
+    ];
+    const eventDetails = searchData.filter(event => event.eventID == eventID)[0];
 
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');

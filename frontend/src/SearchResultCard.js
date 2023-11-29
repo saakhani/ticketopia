@@ -4,13 +4,8 @@ import React from 'react';
 import './SearchResultCard.css'; // Import the CSS file
 import { Outlet, Link } from "react-router-dom";
 
-const SearchResultCard = ({ titleH, venueH, descriptionH, imgSrcH }) => {
-  const eventDetails = {
-    title: titleH,
-    venue: venueH,
-    description: descriptionH,
-    imgSrc: imgSrcH
-  };
+const SearchResultCard = ({ eventDetailsH }) => {
+  const eventDetails = eventDetailsH;
 
 
   return (
@@ -21,7 +16,7 @@ const SearchResultCard = ({ titleH, venueH, descriptionH, imgSrcH }) => {
       <div className="result-title">{eventDetails.title}</div>
       <div className="result-venue">{eventDetails.venue}</div>
       <div className="result-description">{eventDetails.description}</div>
-      <Link to={{pathname: "/EventPage", state: eventDetails}} className="result-link">
+      <Link className="result-link" to ={`/EventPage/${eventDetails.eventID}`} >
         Book Now
       </Link>
     </div>

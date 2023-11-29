@@ -6,6 +6,10 @@ import SearchBoxStatic from "./SearchBoxStatic.js";
 
 const Header = () => {
 
+    const handleLogin = () => {
+        alert("not yet available")
+    };
+
     return(
         <div className="header">
             <div className="logo">
@@ -14,7 +18,7 @@ const Header = () => {
             <div className="search-box-static">
                 <SearchBoxStatic />
             </div>
-            <button className="login-button-header">
+            <button className="login-button-header" onClick = {handleLogin}>
                 login
             </button>
         </div>
