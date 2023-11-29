@@ -112,24 +112,37 @@ const Search = () => {
     //   imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
     // }
     // Add more search results as needed
-];
+ ];
 
-  
-  const [searchQuery, setSearchQuery] = useState("");
+ const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  
 
   const handleInputChange = (inputValue) => {
     setSearchQuery(inputValue);
   };
 
-  // Function to handle search logic
-  const handleSearch = (inputValue) => {
-    //const searchWords = inputValue.toLowerCase().split(/\s+/);
-    //perform an SQL query with searchWords
-    setSearchResults(searchData);
-  
+  const handleSearch = () => {
+    // Make an HTTP POST request to the server to fetch search results
+    fetch('http://localhost:8081/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ searchQuery }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        setSearchResults(data);
+      })
+      .catch(error => console.error('Error fetching search results:', error));
   };
+
+  
+  
+ 
+
+  
+  
   
   
 

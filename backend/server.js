@@ -19,7 +19,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '', // Enter your MySQL password
-  database: 'signup',
+  database: 'se',
 });
 
 // Check if the connection to the database is successful
@@ -31,30 +31,28 @@ db.connect((err) => {
   }
 });
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
 
-// Sample endpoint for user registration
-app.post('/Signup/signup', (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
+app.post('/search', (req, res) => {
+  const searchQuery = req.body.searchQuery;
 
-  // Perform validation if needed
-
-  // Insert data into MySQL database
-  const sql = 'INSERT INTO login (firstName, lastName, email, password) VALUES (?, ?, ?, ?)';
-  const values = [firstname, lastname, email, password];
-
-  db.query(sql, values, (err, result) => {
+  
+  const sql = `
+    SELECT event_id, event_name, venue, vip_fare, general_fare
+    FROM eventlist
+    WHERE event_name LIKE ? OR venue LIKE ?
+  `;
+  
+  const query = '%' + searchQuery + '%';
+  db.query(sql, [query, query], (err, results) => {
     if (err) {
-      console.error('Error:', err);
+      console.error('Error executing SQL query:', err);
       res.status(500).json({ error: 'Internal Server Error' });
     } else {
-      console.log('User registered successfully');
-      res.status(200).json({ message: 'User registered successfully' });
+      res.json(results);
     }
   });
 });
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
