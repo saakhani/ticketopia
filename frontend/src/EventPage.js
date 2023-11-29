@@ -113,60 +113,60 @@ const EventPage = () => {
             <h1>Event Details</h1>
             <div className='event-body'>
                 <div className="event-details">
-                <img src = {eventDetails.imgSrc} className = "event-image" 
-                alt="Event Image" height={400} width={600}/>
-                <h2 className="event-name">
-                    {eventDetails.title}
-                </h2>
-                <div className="event-venue">
-                    <img className="location-icon" alt="icon for location" src={images.location_icon}/>
-                    <div className="venue-name">
-                        {eventDetails.venue}
+                    <img src = {eventDetails.imgSrc} className = "event-image" 
+                    alt="Event Image" height={400} width={600}/>
+                    <h2 className="event-name">
+                        {eventDetails.title}
+                    </h2>
+                    <div className="event-venue">
+                        <img className="location-icon" alt="icon for location" src={images.location_icon}/>
+                        <div className="venue-name">
+                            {eventDetails.venue}
+                        </div>
                     </div>
-                </div>
-                <p className="event-description">
-                    {eventDetails.description}
-                </p>
+                    <p className="event-description">
+                        {eventDetails.description}
+                    </p>
                 </div>
                 <div className="book-event">
                     <h3>select date and time</h3>
                     <div className="date-and-time">
-                    <div className = "date-picker">
-                        <DatePicker 
-                            selected={selectedDate}
-                            onChange={date => setSelectedDate(date)}
-                            dateFormat="MMMM d, yyyy"
-                            minDate={new Date()}
-                            maxDate={addDays(new Date(), 5)}
-                            customInput={<DateCustomInput />}
-                        />
-                    </div>
-                <div className="time-selector">
-                    {
-                        eventTimes.length > 0 ? eventTimes.map(time => (
-                        <button key={time} onClick={() => handleTimeSelect(time)} className={selectedTime === time ? 'selected' : 'deselected'}>
-                            {time}
-                        </button>
-                    )): <div className='no-times'>no timings found for selected date</div>
-                }
-                </div>
+                        <div className = "date-picker">
+                            <DatePicker 
+                                selected={selectedDate}
+                                onChange={date => setSelectedDate(date)}
+                                dateFormat="MMMM d, yyyy"
+                                minDate={new Date()}
+                                maxDate={addDays(new Date(), 5)}
+                                customInput={<DateCustomInput />}
+                            />
+                        </div>
+                        <div className="time-selector">
+                        {
+                            eventTimes.length > 0 ? eventTimes.map(time => (
+                            <button key={time} onClick={() => handleTimeSelect(time)} className={selectedTime === time ? 'selected' : 'deselected'}>
+                                {time}
+                            </button>
+                            )): <div className='no-times'>no timings found for selected date</div>
+                        }
+                        </div>
                     </div>
                     <h3>select tickets</h3>
                         <div className="ticket-selector">
-                        <select value={ticketType} onChange={handleTicketTypeChange}>
-                    <option value="">Select Ticket Type</option>
-                    <option value="VIP">VIP - ${prices.VIP}</option>
-                    <option value="General">General - ${prices.General}</option>
-                </select>
-                <input type="number" value={numTickets} onChange={(e) => setNumTickets(e.target.value)} min="1" />
+                            <select value={ticketType} onChange={handleTicketTypeChange}>
+                                <option value="">Select Ticket Type</option>
+                                <option value="VIP">VIP - ${prices.VIP}</option>
+                                <option value="General">General - ${prices.General}</option>
+                            </select>
+                            <input type="number" value={numTickets} onChange={(e) => setNumTickets(e.target.value)} min="1" />
                         </div>
                     <h3>enter your information</h3>
-                    <div className="user-info">
-                        <input type="text" placeholder="name"  onChange={handleNameChange}/>
-                        <input type="text" placeholder="email" onChange={handleEmailChange}/>
-                        <input type="text" placeholder="phone" onChange={handlePhoneChange}/>
-                    </div>
-                <button className='checkout-button' onClick={handleCheckout}>checkout</button>
+                        <div className="user-info">
+                            <input type="text" placeholder="name"  onChange={handleNameChange}/>
+                            <input type="text" placeholder="email" onChange={handleEmailChange}/>
+                            <input type="text" placeholder="phone" onChange={handlePhoneChange}/>
+                        </div>
+                    <button className='checkout-button' onClick={handleCheckout}>checkout</button>
                 </div>
             </div>
         </div>
