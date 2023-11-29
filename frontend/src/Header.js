@@ -14,7 +14,7 @@ const Header = () => {
             <div className="search-box-static">
                 <SearchBoxStatic />
             </div>
-            <button className="login-button">
+            <button className="login-button-header">
                 login
             </button>
         </div>

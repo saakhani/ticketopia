@@ -4,16 +4,24 @@ import React from 'react';
 import './SearchResultCard.css'; // Import the CSS file
 import { Outlet, Link } from "react-router-dom";
 
-const SearchResultCard = ({ title, venue, description, link }) => {
+const SearchResultCard = ({ titleH, venueH, descriptionH, imgSrcH }) => {
+  const eventDetails = {
+    title: titleH,
+    venue: venueH,
+    description: descriptionH,
+    imgSrc: imgSrcH
+  };
+
+
   return (
     <div className="search-result-card">
       <div className="result-image">
-        <img src="https://dummyimage.com/600x400/bdbdbd/595959" alt="placeholder" />
+        <img src={eventDetails.imgSrc} alt="placeholder" />
       </div>
-      <div className="result-title">{title}</div>
-      <div className="result-venue">{venue}</div>
-      <div className="result-description">{description}</div>
-      <Link to="/EventPage" className="result-link">
+      <div className="result-title">{eventDetails.title}</div>
+      <div className="result-venue">{eventDetails.venue}</div>
+      <div className="result-description">{eventDetails.description}</div>
+      <Link to={{pathname: "/EventPage", state: eventDetails}} className="result-link">
         Book Now
       </Link>
     </div>

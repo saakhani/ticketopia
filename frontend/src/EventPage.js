@@ -1,29 +1,30 @@
 import React, { useState, forwardRef } from 'react';
 import DatePicker from 'react-datepicker'; // Assuming you're using react-datepicker
+import { addDays } from "date-fns";
 import images from "./images.js";
 import "./EventPage.css";
 import './custom-datepicker.css';
 
 import Header from "./Header.js";
 
-const EventPage = () => {
-    const eventDetails ={
-        title: "ABC Event",
-        venue: "XYZ Venue",
-        //generate 100 words of lorem ipsum
-        description: " Immerse yourself in a variety of engaging activities that cater to every interest and age group. From interactive workshops and live performances to delicious culinary delights, there's something for everyone.",
-        imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
-      };
+const EventPage = (props) => {
+    const { state } = props.location;
+    const { eventDetails} = state;
 
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [ticketType, setTicketType] = useState('');
     const [ticketPrice, setTicketPrice] = useState(0);
     const [numTickets, setNumTickets] = useState(1);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+
     
     // Assuming these are your event times
-    // const eventTimes = ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '6:00 PM'];
-    const eventTimes = [];
+    const eventTimes = ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '6:00 PM'];
+    //const eventTimes = [];
+
     
     // Ticket prices
     const prices = {
@@ -40,6 +41,18 @@ const EventPage = () => {
     const handleTimeSelect = (time) => {
         setSelectedTime(time);
     };
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePhoneChange = (e) => {
+        setPhone(e.target.value);
+    };
     
     const handleTicketTypeChange = (e) => {
         setTicketType(e.target.value);
@@ -48,9 +61,28 @@ const EventPage = () => {
     
     const handleCheckout = () => {
         // Implement checkout logic
-        console.log("Checking out", {selectedDate, selectedTime, ticketType, numTickets});
+        if (!selectedDate) {
+            alert('Please select a date');
+        }
+        else if (!selectedTime) {
+            alert('Please select a time');
+        }
+        else if (!ticketType) {
+            alert('Please select a ticket type');
+        }
+        else if (name == '') {
+            alert('Please enter your name');
+        }
+        else if (email == '') {
+            alert('Please enter your email');
+        }
+        else if (phone == '') {
+            alert('Please enter your phone number');
+        }
+        else{
+            window.location.href = '/EventPage/BookedPage';
+        }
     };
-    
     
 
 
@@ -86,25 +118,35 @@ const EventPage = () => {
                             onChange={date => setSelectedDate(date)}
                             dateFormat="MMMM d, yyyy"
                             minDate={new Date()}
+                            maxDate={addDays(new Date(), 5)}
                             customInput={<DateCustomInput />}
                         />
                     </div>
                 <div className="time-selector">
-                    {eventTimes == [] ? eventTimes.map(time => (
+                    {
+                        eventTimes.length > 0 ? eventTimes.map(time => (
                         <button key={time} onClick={() => handleTimeSelect(time)} className={selectedTime === time ? 'selected' : 'deselected'}>
                             {time}
                         </button>
                     )): <div className='no-times'>no timings found for selected date</div>
                 }
                 </div>
-                        </div>
-
-                <select value={ticketType} onChange={handleTicketTypeChange}>
+                    </div>
+                    <h3>select tickets</h3>
+                        <div className="ticket-selector">
+                        <select value={ticketType} onChange={handleTicketTypeChange}>
                     <option value="">Select Ticket Type</option>
                     <option value="VIP">VIP - ${prices.VIP}</option>
                     <option value="General">General - ${prices.General}</option>
                 </select>
                 <input type="number" value={numTickets} onChange={(e) => setNumTickets(e.target.value)} min="1" />
+                        </div>
+                    <h3>enter your information</h3>
+                    <div className="user-info">
+                        <input type="text" placeholder="name"  onChange={handleNameChange}/>
+                        <input type="text" placeholder="email" onChange={handleEmailChange}/>
+                        <input type="text" placeholder="phone" onChange={handlePhoneChange}/>
+                    </div>
                 <button className='checkout-button' onClick={handleCheckout}>checkout</button>
                 </div>
             </div>
