@@ -24,6 +24,21 @@ const Search = () => {
   //   imgSrc: {}
   // },
 
+  // @Marium Your original code is below
+
+  // fetch('http://localhost:8081/search', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ searchQuery }),
+  // })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     setSearchResults(data);
+  //   })
+  //   .catch(error => console.error('Error fetching search results:', error));
+
   const searchData = [
     {
       eventID: 1,
