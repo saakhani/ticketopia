@@ -20,6 +20,12 @@ img {
     margin-top: 20px;
 }
 
+.logo-button{
+    border: 0px;
+    outline: 0px;
+    background: transparent;
+}
+
 .login-button-header{
     background-color: #0391cb;
     border-radius: 54px;

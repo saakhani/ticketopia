@@ -1,29 +1,35 @@
 import React from "react";
 import images from "./images.js";
 import "./Header.css";
+import PropTypes from "prop-types";
 
 import SearchBoxStatic from "./SearchBoxStatic.js";
 
-const Header = () => {
+function Header({inputQueryHeader}) {
 
     const handleLogin = () => {
         alert("not yet available")
     };
 
+    console.log(inputQueryHeader);
+
     return(
         <div className="header">
             <div className="logo">
-                <img src={images.logo_symbol} alt="Logo" />
+                <button className="logo-button" onClick={() => window.location.href = '/'}>
+                    <img src={images.logo_symbol} alt="Logo" />
+                </button>
             </div>
             <div className="search-box-static">
-                <SearchBoxStatic />
+                <SearchBoxStatic inputQuery= {inputQueryHeader}/>
             </div>
             <button className="login-button-header" onClick = {handleLogin}>
                 login
             </button>
         </div>
     )
-
+    
 }
+
 
 export default Header;

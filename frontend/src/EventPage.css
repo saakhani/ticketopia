@@ -188,6 +188,23 @@ h3 {
     color: #ffffff;
 }
 
+.total-price {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.price-label {
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 24px;
+    font-weight: 500;
+    margin-right: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
 
 .checkout-button {         
     cursor: pointer;
@@ -199,17 +216,14 @@ h3 {
     font-weight: 600;
     height: 50px;
     width: 110px;
-    margin-left: auto;
     letter-spacing: 0;
     line-height: normal;
     text-align: center;
     outline: 0;
     border: 0;
-    margin-left: auto;
-    margin-top: auto;
-    margin-bottom: 20px;
-    margin-right: 20px;
 }
+
+
 
 .checkout-button:disabled {
     cursor: default;
@@ -225,10 +239,132 @@ h3 {
     flex-direction: row;
     align-items: center;
     margin: 10px;
-    padding: 20px
+}
+
+.ticket-information {
+    display: inline-flex;
+    margin: 10px;
+}
+
+.ticket-selector {
+    margin-left: 10px;
+    display: inline-flex;
+}
+
+.ticket-selector option{
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 20px;
+    font-weight: 500;
+
+
+}
+
+.ticket-selector select, .quantity-input{
+    font-size: 20px;
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-weight: 600;
+    border: #0391cb 2px solid;
+    background-color: #ececec;
+    border-radius: 54px;
+    height: 50px;
+    color: #0391cb;
+    margin-left: 10px;
+    width: 220px;
+    text-align: center;
 }
 
 
-select, input[type='number'] {
-    margin: 10px 0;
+
+.ticket-selector select:focus{
+    outline: none;
 }
+
+.ticket-quantity {
+    display: inline-flex;
+}
+
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+    max-width: 710px;
+    justify-content: space-between;
+}
+
+.ticket-type-label, .quantity-label{
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    color: #0391cb;
+    font-size: 28px;
+    font-weight: 500;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.ticket-type-label{
+    margin-right: 10px;
+}
+
+.quantity-label{
+    margin-left: 35px;
+    margin-right: 10px;
+}
+
+.quantity-input{
+    width: 140px;
+}
+
+.quantity-input:focus{
+    font-size: 20px;
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-weight: 600;
+    border: #0391cb 2px solid;
+    background-color: #ececec;
+    border-radius: 54px;
+    height: 50px;
+    color: #0391cb;
+    margin-left: 10px;
+    width: 140px;
+    text-align: center;
+}
+
+.user-name, .user-email, .user-phone {
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 20px;
+    font-weight: 500;
+    border: #0391cb 2px solid;
+    background-color: #ececec;
+    border-radius: 18px;
+    height: 50px;
+    color: #0391cb;
+    text-align: left;
+    padding-left: 10px;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+
+.user-name:focus, .user-email:focus, .user-phone:focus{
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 20px;
+    font-weight: 500;
+    border: #0391cb 2px solid;
+    background-color: #ececec;
+    border-radius: 18px;
+    height: 50px;
+    color: #0391cb;
+    text-align: left;
+}
+
+.user-name{
+    min-width: 710px;
+}
+
+.user-email{
+    min-width: 385px;
+}
+
+.user-phone{
+    min-width: 285px;
+}
+
