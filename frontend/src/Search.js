@@ -14,8 +14,15 @@ const Search = () => {
   const params = useParams();
   const [searchQuery] = useState(params.SearchBoxQuery);
 
-  //Add code here to fetch data from backend
-  //Store it in searchData
+  //@Mariam add code here to fetch data from backend Store it in searchData. Please use a for loop/other methods
+  //to change the variable names of the extracted data from the sql queries to match the following entry
+  // {
+  //   eventID: {},
+  //   title: {},
+  //   venue: {},
+  //   description: {},
+  //   imgSrc: {}
+  // },
 
   const searchData = [
     {

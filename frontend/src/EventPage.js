@@ -64,7 +64,7 @@ const EventPage = () => {
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [ticketType, setTicketType] = useState('VIP');
-    const [ticketPrice, setTicketPrice] = useState({eventDetails.vipPrice});
+    const [ticketPrice, setTicketPrice] = useState(eventDetails.vipPrice);
     const [numTickets, setNumTickets] = useState(1);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -74,8 +74,8 @@ const EventPage = () => {
     
     // Ticket prices
     const prices = {
-        'VIP': {eventDetails.vipPrice}, // Example price for VIP
-        'General': {eventDetails.generalPrice} // Example price for General
+        'VIP': eventDetails.vipPrice,
+        'General': eventDetails.generalPrice 
     };
 
     const DateCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -126,6 +126,7 @@ const EventPage = () => {
             alert('Please enter your phone number');
         }
         else{
+						// @Mariam execute the booking procedure here. The values are given above. Please make sure that the procedure addresses the change in eventStatus table.  
             window.location.href = '/EventPage/BookedPage';
         }
     };
