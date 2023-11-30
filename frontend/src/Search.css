@@ -3,121 +3,19 @@ html {
   width: auto;
 }
 
-.search-simple {
+.search-page {
   background-color: #ffffff;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center; */
   width: auto;
 }
 
-.search-simple .div {
-  background-color: #ffffff;
-  /* height: 1080px; */
-  position: relative;
-  width: 100%;
-}
-
-.search-simple .group {
-  height: 59px;
-  left: 25px;
-  position: absolute;
-  top: 22px;
-  width: 300px;
-}
-
-.search-simple .ticketopia {
-  height: 59px;
-  left: 8px;
-  position: absolute;
-  top: 5px;
-  width: (223+77)px;
-  scale: 1.15;
-}
-
-.search-simple .text-wrapper {
-  color: #0391cb;
-  font-family: "M PLUS Rounded 1c", Helvetica;
-  font-size: 104px;
-  font-weight: 700;
-  height: 111px;
-  left: 650px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 339px;
-  white-space: nowrap;
-  width: 619px;
-}
-
-.search-simple .overlap-group-wrapper {
-  height: 97px;
-  left: 317px;
-  position: absolute;
-  top: 540px;
-  width: 1287px;
-}
-
-.search-simple .overlap-group {
-  background-color: #e8e8e8;
-  border-radius: 54px;
-  height: 97px;
-  position: relative;
-  /* width: 1285px; */
-  width: auto;
-  transition: transform 0.3s ease; 
-}
-
-.search-simple .search-box {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-}
-
-.search-simple:focus-within .overlap-group {
-  border: 2px solid #0391cb;
-  transform: translate(-211px, -512px);
-  height: 60px;
-}
-
-.search-simple:focus-within .text-wrapper{
-  visibility: hidden;
-}
-
-.search-simple .login-button{
-  background-color: #0391cb;
-  border-radius: 54px;
-  color: #ffffff;
-  font-family: "M PLUS Rounded 1c", Helvetica;
-  font-size: 23px;
-  font-weight: 600;
-  height: 60px;
-  width: 100px;
-  right: 30px;
-  top: 28px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  outline: 0;
-  border: 0;
-}
-
-.div .search-result-container {
+.search-page .search-result-container {
   display: flex;
   justify-content: left; /* Adjust as needed: flex-start, flex-end, space-between, etc. */
   flex-wrap: wrap;
-  margin-left: 70px;
-  margin-right: 70px;
-  margin-top: 130px;
-  visibility: hidden;
+  margin-top: 20px;
+  margin-left: 25px;
 }
-
-
-.search-simple:focus-within .search-result-container {
-  visibility: visible;
-}
-
 

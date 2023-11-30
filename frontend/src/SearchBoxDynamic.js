@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import "./UserInputBox.css";
+import "./SearchBoxDynamic.css";
 import images from './images.js';
 import PropTypes from "prop-types";
 
 
-function UserInputBox({ onSearch, onInputChange}) {
+function SearchBoxDynamic() {
   // State to manage the input value
   const [inputValue, setInputValue] = useState('');
 
   // Event handler to update the input value
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    onInputChange(event.target.value);
+    //onInputChange(event.target.value);
   };
 
   const searchButtonEvent = () => {
@@ -24,6 +24,18 @@ function UserInputBox({ onSearch, onInputChange}) {
     }
   };
 
+  const onSearch = (inputValue) => {
+    //alert("searching for " + inputValue);
+    if (inputValue === '') {
+      alert("Please enter a search term")
+    }
+    else{
+      window.location.href = '/search/' + inputValue;
+    }
+  }
+
+
+
 
   //check if any element from search-wrapper is in focus or not
   const isTextBoxFocused = () => {
@@ -33,24 +45,17 @@ function UserInputBox({ onSearch, onInputChange}) {
 
   return (
     <div className='search-wrapper'>
-      <div className='search-input'>
-      {/* Input box with an event handler */}
       <input
         className='input-box'
         type="text"
-        value={inputValue}
+        value={inputValue}          
         onChange={handleInputChange}
         placeholder="search for an event"
         onKeyPress={handleKeyPress}
       />
-      {/* Display the input value */}
-      {/* <p>You typed: {inputValue}</p> */}
-      </div>
       <button
         className="search-button"
-        onClick={searchButtonEvent}
-        //</div>disabled={!isTextBoxFocused}
-        >
+        onClick={searchButtonEvent}>
         <img 
             className="search-image"
             src={images.search}
@@ -62,10 +67,6 @@ function UserInputBox({ onSearch, onInputChange}) {
   );
 }
 
-UserInputBox.propTypes = {
-  onInputChange: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired
-};
+SearchBoxDynamic.propTypes = {};
 
-export default UserInputBox;
+export default SearchBoxDynamic;

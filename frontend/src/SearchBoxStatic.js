@@ -4,9 +4,9 @@ import images from './images.js';
 import PropTypes from "prop-types";
 
 
-function SearchBoxStatic({ onSearch, onInputChange}) {
+function SearchBoxStatic({inputQuery}) {
   // State to manage the input value
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(inputQuery);
 
   // Event handler to update the input value
   const handleInputChange = (event) => {
@@ -15,8 +15,7 @@ function SearchBoxStatic({ onSearch, onInputChange}) {
   };
 
   const searchButtonEvent = () => {
-    alert("button clicked")
-    // onSearch(inputValue);
+    onSearch(inputValue);
   };
 
   const handleKeyPress = (event) => {
@@ -24,6 +23,17 @@ function SearchBoxStatic({ onSearch, onInputChange}) {
       onSearch(inputValue);
     }
   };
+
+  const onSearch = (inputValue) => {
+    //alert("searching for " + inputValue);
+    if (inputValue === '') {
+      alert("Please enter a search term")
+    }
+    else{
+      window.location.href = '/search/' + inputValue;
+    }
+  }
+
 
 
   //check if any element from search-wrapper is in focus or not
@@ -56,9 +66,7 @@ function SearchBoxStatic({ onSearch, onInputChange}) {
 }
 
 SearchBoxStatic.propTypes = {
-  onInputChange: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired
+  inputQuery: PropTypes.string.isRequired,
 };
 
 export default SearchBoxStatic;
