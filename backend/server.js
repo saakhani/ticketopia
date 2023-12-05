@@ -1,4 +1,3 @@
-// In your server.js or equivalent file
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
@@ -10,11 +9,8 @@ const cors = require('cors');
 
 app.use(cors());
 
-
-// Middleware to parse JSON data
 app.use(bodyParser.json());
 
-// MySQL database connection
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -22,7 +18,6 @@ const db = mysql.createConnection({
   database: 'se',
 });
 
-// Check if the connection to the database is successful
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to MySQL:', err);
@@ -31,19 +26,29 @@ db.connect((err) => {
   }
 });
 
-
 app.post('/search', (req, res) => {
   const searchQuery = req.body.searchQuery;
 
-  
-  const sql = `
-    SELECT event_id, event_name, venue, vip_fare, general_fare
-    FROM eventlist
-    WHERE event_name LIKE ? OR venue LIKE ?
-  `;
-  
-  const query = '%' + searchQuery + '%';
-  db.query(sql, [query, query], (err, results) => {
+  let sql;
+  let query;
+
+  if (searchQuery.toLowerCase() === 'all') {
+    // If searchQuery is 'all', retrieve all records
+    sql = `
+      SELECT event_id, event_name, venue, header_img
+      FROM eventlist
+    `;
+  } else {
+    // Otherwise, filter records based on case-insensitive event_name or venue
+    sql = `
+      SELECT event_id, event_name, venue, header_img
+      FROM eventlist
+      WHERE LOWER(event_name) LIKE ? OR LOWER(venue) LIKE ?
+    `;
+    query = '%' + searchQuery.toLowerCase() + '%';
+  }
+
+  db.query(sql, query ? [query, query] : [], (err, results) => {
     if (err) {
       console.error('Error executing SQL query:', err);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -52,6 +57,122 @@ app.post('/search', (req, res) => {
     }
   });
 });
+
+app.post('/eventDetails', (req, res) => {
+  const eventID = req.body.eventID;
+
+  // Fetch event details
+  const fetchEventDetails = () => {
+    return new Promise((resolve, reject) => {
+      const detailsSql = `
+        SELECT event_id, event_name, venue, vip_fare, general_fare, header_img
+        FROM eventlist
+        WHERE event_id = ?
+      `;
+      db.query(detailsSql, [eventID], (err, detailsResults) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(detailsResults[0]);
+        }
+      });
+    });
+  };
+
+  // Fetch event status
+  const fetchEventStatus = () => {
+    return new Promise((resolve, reject) => {
+      const statusSql = `
+        SELECT event_date, total_vip_tickets, total_general_tickets, vip_tickets_booked, general_tickets_booked, event_time
+        FROM eventstatus
+        WHERE event_id = ?
+      `;
+      db.query(statusSql, [eventID], (err, statusResults) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(statusResults[0]);
+        }
+      });
+    });
+  };
+
+  Promise.all([fetchEventDetails(), fetchEventStatus()])
+    .then(([eventDetails, eventStatus]) => {
+      const eventData = {
+        imgSrc: eventDetails.header_img,
+        title: eventDetails.event_name,
+        venue: eventDetails.venue,
+        description: eventDetails.event_description,
+        vipPrice: eventDetails.vip_fare,
+        generalPrice: eventDetails.general_fare,
+        eventStatus: {
+          eventTimes: [eventStatus.event_time], // Modify this based on your event status structure
+          stringDates: [eventStatus.event_date.toISOString()], // Modify this based on your event status structure
+          totalVipTickets: eventStatus.total_vip_tickets,
+          totalGeneralTickets: eventStatus.total_general_tickets,
+        },
+      };
+
+      res.json(eventData);
+    })
+    .catch((error) => {
+      console.error('Error fetching event details:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+app.post('/bookTicket', (req, res) => {
+  const { eventID, bookingDate, name, phone, category } = req.body;
+
+  // Execute the bookEvent procedure in the database
+  const executeBookEventProcedure = () => {
+    return new Promise((resolve, reject) => {
+      const bookEventProcedure = `
+        CALL bookEvent(?, ?, ?, ?, ?);
+      `;
+
+      db.query(
+        bookEventProcedure,
+        [eventID, bookingDate, name,  phone, category,],
+        (err, results) => {
+          if (err) {
+            // Handle specific SQLSTATE errors or check result values
+            if (err.code === '45000') {
+              // This is where you handle the specific error
+              return reject({ error: true, message: err.message });
+            }
+            
+
+            // Handle other errors if needed
+            return reject(err);
+          }
+
+          // Check results to determine success or other conditions
+          // Modify this based on what your stored procedure returns
+          const success = results && results.affectedRows > 0;
+
+          if (success) {
+            resolve({ success: true, message: 'Booking successful' });
+          } else {
+            reject({ error: true, message: 'Booking failed' });
+          }
+        }
+      );
+    });
+  };
+
+  // Execute the entire booking procedure
+  executeBookEventProcedure()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      console.error('Error booking ticket:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
 
 
 app.listen(port, () => {

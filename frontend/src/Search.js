@@ -1,98 +1,91 @@
-
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Search.css";
-import "./images.js";
 import SearchResultCard from "./SearchResultCard.js";
 import Header from './Header.js';
 import { useParams } from "react-router-dom";
 
-  
+// Import images statically
+import artExhibitionImage from './images/art_exhibition.jpg';
+import techConferenceImage from './images/tech_conference.jpg';
+import foodFestivalImage from './images/food_festival.jpg';
+import comedyNightImage from './images/comedy_night.jpg';
+import fashionShowImage from './images/fashion_show.jpg';
+import scienceExpoImage from './images/science_expo.jpg';
+import fitnessExpoImage from './images/fitness_expo.jpg';
+import craftFairImage from './images/craft_fair.jpg';
+import gardenPartyImage from './images/garden_party.jpg';
+import wellnessWorkshopImage from './images/wellness_workshop.jpg';
+
+
 const Search = () => {
-
-  
-
   const params = useParams();
   const [searchQuery] = useState(params.SearchBoxQuery);
+  const [searchResults, setSearchResults] = useState([]);
 
-  //@Mariam add code here to fetch data from backend Store it in searchData. Please use a for loop/other methods
-  //to change the variable names of the extracted data from the sql queries to match the following entry
-  // {
-  //   eventID: {},
-  //   title: {},
-  //   venue: {},
-  //   description: {},
-  //   imgSrc: {}
-  // },
+  useEffect(() => {
+    fetch('http://localhost:8081/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ searchQuery }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        const searchData = data.map(item => {
+          let imgSrc;
 
-  // @Marium Your original code is below
+          // Use a switch or if-else statement to select the correct image import
+          switch (item.event_name.toLowerCase()) {
+            case 'art exhibition':
+              imgSrc = artExhibitionImage;
+              break;
+            case 'tech conference':
+              imgSrc = techConferenceImage;
+              break;
+            case 'food festival':
+              imgSrc = foodFestivalImage;
+              break;
+            case 'comedy night':
+              imgSrc = comedyNightImage;
+              break;
+            case 'fashion show':
+              imgSrc = fashionShowImage;
+              break;
+            case 'science expo':
+              imgSrc = scienceExpoImage;
+              break;
+            case 'fitness expo':
+              imgSrc = fitnessExpoImage;
+              break;
+            case 'craft fair':
+              imgSrc = craftFairImage;
+              break;
+            case 'garden party':
+              imgSrc = gardenPartyImage;
+              break;
+            case 'wellness workshop':
+              imgSrc = wellnessWorkshopImage;
+              break;
+            // Add more cases as needed
 
-  // fetch('http://localhost:8081/search', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({ searchQuery }),
-  // })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     setSearchResults(data);
-  //   })
-  //   .catch(error => console.error('Error fetching search results:', error));
+            default:
+              imgSrc = ''; // Default image if no match
+              break;
+          }
 
-  const searchData = [
-    {
-      eventID: 1,
-      title: "Event 1",
-      venue: "Venue 1",
-      description: "Description 1",
-      imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
-    },
-    {
-      eventID: 2,
-      title: "Event 2",
-      venue: "Venue 2",
-      description: "Description 2",
-      imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
-    },
-    {
-      eventID: 3,  
-      title: "Event 3",
-      venue: "Venue 3",
-      description: "Description 3",
-      imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
-    },
-    {
-      eventID: 4,  
-      title: "Event 4",
-      venue: "Venue 4",
-      description: "Description 4",
-      imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
-    },
-    {
-      eventID: 5,  
-      title: "Event 5",
-      venue: "Venue 5",
-      description: "Description 5",
-      imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
-    },
-    {
-      eventID: 6,  
-      title: "Event 6",
-      venue: "Venue 6",
-      description: "Description 6",
-      imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
-    },
-    {
-      eventID: 7,  
-      title: "Event 7",
-      venue: "Venue 7",
-      description: "Description 7",
-      imgSrc: "https://dummyimage.com/600x400/bdbdbd/595959"
-    }
-    // Add more search results as needed
-  ];
+          return {
+            eventID: item.event_id,
+            title: item.event_name,
+            venue: item.venue,
+            imgSrc: imgSrc,
+          };
+        });
 
-  const [searchResults, setSearchResults] = useState(searchData);
+        setSearchResults(searchData);
+      })
+      .catch(error => console.error('Error fetching search results:', error));
+  }, [searchQuery]);
 
   return (
     <div className="search-page">
@@ -101,11 +94,11 @@ const Search = () => {
       </div>
       <div className="search-result-container">
         {searchResults.map((searchResult) => (
-          <SearchResultCard eventDetailsH={searchResult}/>
+          <SearchResultCard eventDetailsH={searchResult} key={searchResult.eventID} />
         ))}
       </div>
     </div>
   );
-};  
+};
 
 export default Search;
