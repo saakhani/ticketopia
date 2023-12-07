@@ -26,6 +26,10 @@
     vertical-align: middle;
 }
 
+.search-wrapper-static .input-box-static:focus {
+    outline: none;
+}
+
 .search-wrapper-static .search-button-static {
     background: none;
     outline: none;

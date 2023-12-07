@@ -33,52 +33,53 @@ const SearchPage = () => {
       .then(response => response.json())
       .then(data => {
         const searchData = data.map(item => {
-          let imgSrc;
+          // let imgSrc;
 
-          // Use a switch or if-else statement to select the correct image import
-          switch (item.event_name.toLowerCase()) {
-            case 'art exhibition':
-              imgSrc = artExhibitionImage;
-              break;
-            case 'tech conference':
-              imgSrc = techConferenceImage;
-              break;
-            case 'food festival':
-              imgSrc = foodFestivalImage;
-              break;
-            case 'comedy night':
-              imgSrc = comedyNightImage;
-              break;
-            case 'fashion show':
-              imgSrc = fashionShowImage;
-              break;
-            case 'science expo':
-              imgSrc = scienceExpoImage;
-              break;
-            case 'fitness expo':
-              imgSrc = fitnessExpoImage;
-              break;
-            case 'craft fair':
-              imgSrc = craftFairImage;
-              break;
-            case 'garden party':
-              imgSrc = gardenPartyImage;
-              break;
-            case 'wellness workshop':
-              imgSrc = wellnessWorkshopImage;
-              break;
-            // Add more cases as needed
+          // // Use a switch or if-else statement to select the correct image import
+          // switch (item.event_name.toLowerCase()) {
+          //   case 'art exhibition':
+          //     imgSrc = artExhibitionImage;
+          //     break;
+          //   case 'tech conference':
+          //     imgSrc = techConferenceImage;
+          //     break;
+          //   case 'food festival':
+          //     imgSrc = foodFestivalImage;
+          //     break;
+          //   case 'comedy night':
+          //     imgSrc = comedyNightImage;
+          //     break;
+          //   case 'fashion show':
+          //     imgSrc = fashionShowImage;
+          //     break;
+          //   case 'science expo':
+          //     imgSrc = scienceExpoImage;
+          //     break;
+          //   case 'fitness expo':
+          //     imgSrc = fitnessExpoImage;
+          //     break;
+          //   case 'craft fair':
+          //     imgSrc = craftFairImage;
+          //     break;
+          //   case 'garden party':
+          //     imgSrc = gardenPartyImage;
+          //     break;
+          //   case 'wellness workshop':
+          //     imgSrc = wellnessWorkshopImage;
+          //     break;
+          //   // Add more cases as needed
 
-            default:
-              imgSrc = ''; // Default image if no match
-              break;
-          }
+          //   default:
+          //     imgSrc = ''; // Default image if no match
+          //     break;
+          // }
 
           return {
             eventID: item.event_id,
             title: item.event_name,
             venue: item.venue,
-            imgSrc: imgSrc,
+            description: item.description,
+            // imgSrc: imgSrc,
           };
         });
 

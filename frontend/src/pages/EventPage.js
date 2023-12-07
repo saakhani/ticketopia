@@ -7,26 +7,14 @@ import '../styles/components/CustomDatePicker.css';
 
 import Header from '../components/Header.js';
 import { useParams } from 'react-router-dom';
-
-import artExhibitionImage from '../assets/event-images/art_exhibition.jpg';
-import techConferenceImage from '../assets/event-images/tech_conference.jpg';
-import foodFestivalImage from '../assets/event-images/food_festival.jpg';
-import comedyNightImage from '../assets/event-images/comedy_night.jpg';
-import fashionShowImage from '../assets/event-images/fashion_show.jpg';
-import scienceExpoImage from '../assets/event-images/science_expo.jpg';
-import fitnessExpoImage from '../assets/event-images/fitness_expo.jpg';
-import craftFairImage from '../assets/event-images/craft_fair.jpg';
-import gardenPartyImage from '../assets/event-images/garden_party.jpg';
-import wellnessWorkshopImage from '../assets/event-images/wellness_workshop.jpg';
-
-
+import { set } from 'date-fns';
 
 const EventPage = () => {
   const params = useParams();
   const eventID = params.EventID;
 
   const [eventDetails, setEventDetails] = useState({
-    imgSrc: '',
+
     title: '',
     venue: '',
     description: '',
@@ -49,17 +37,14 @@ const EventPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-
-  const prices = {
-    VIP: eventDetails.vipPrice,
-    General: eventDetails.generalPrice,
-  };
+  
 
   const DateCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button className="date-custom-input" onClick={onClick} ref={ref}>
       {value || 'select date'}
     </button>
   ));
+
 
   useEffect(() => {
     // Fetch event details and status from the server
@@ -68,58 +53,15 @@ const EventPage = () => {
       .then((response) => {
         const eventData = response.data;
   
-        if (eventData) {
-          
-            let imgSrc;
-
-            switch (eventData.title.toLowerCase()) {
-                case 'art exhibition':
-                  imgSrc = artExhibitionImage;
-                  break;
-                case 'tech conference':
-                  imgSrc = techConferenceImage;
-                  break;
-                case 'food festival':
-                  imgSrc = foodFestivalImage;
-                  break;
-                case 'comedy night':
-                  imgSrc = comedyNightImage;
-                  break;
-                case 'fashion show':
-                  imgSrc = fashionShowImage;
-                  break;
-                case 'science expo':
-                  imgSrc = scienceExpoImage;
-                  break;
-                case 'fitness expo':
-                  imgSrc = fitnessExpoImage;
-                  break;
-                case 'craft fair':
-                  imgSrc = craftFairImage;
-                  break;
-                case 'garden party':
-                  imgSrc = gardenPartyImage;
-                  break;
-                case 'wellness workshop':
-                  imgSrc = wellnessWorkshopImage;
-                  break;
-                // Add more cases as needed
-    
-                default:
-                  imgSrc = ''; // Default image if no match
-                  break;
-              }
-    
+        if (eventData) {    
 
             setEventDetails({
-                imgSrc,
                 title: eventData.title,
                 venue: eventData.venue,
                 description: eventData.description,
                 vipPrice: eventData.vipPrice,
                 generalPrice: eventData.generalPrice,
             });
-        
   
           // Set event status details
           setEventStatus({
@@ -128,13 +70,16 @@ const EventPage = () => {
             totalVipTickets: eventData.eventStatus.totalVipTickets || 0,
             totalGeneralTickets: eventData.eventStatus.totalGeneralTickets || 0,
           });
+
+          setTicketType('General');
+          setTicketPrice(eventData.generalPrice);
+    
         }
       })
       .catch((error) => {
         console.error('Error fetching event details:', error);
       });
   }, [eventID])
-  
 
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
@@ -142,7 +87,7 @@ const EventPage = () => {
 
   const handleTicketTypeChange = (e) => {
     setTicketType(e.target.value);
-    setTicketPrice(prices[e.target.value]);
+    setTicketPrice(e.target.value === 'VIP' ? eventDetails.vipPrice : eventDetails.generalPrice);
     setNumTickets(1); // Reset numTickets when ticket type changes
   };
 
@@ -195,6 +140,7 @@ const EventPage = () => {
     }
   };
 
+
   return (
     <div className="event-page">
       <div className="header">
@@ -203,31 +149,31 @@ const EventPage = () => {
       <h1>Event Details</h1>
       <div className="event-body">
         <div className="event-details">
-          <img src={eventDetails.imgSrc} className="event-image" alt="Event Image" height={400} width={600} />
-          <h2 className="event-name">{eventDetails.title}</h2>
-          <div className="event-venue">
-            <img className="location-icon" alt="icon for location" src={images.location_icon} />
-            <div className="venue-name">{eventDetails.venue}</div>
-          </div>
-          <p className="event-description">{eventDetails.description}</p>
-        </div>
-        <div className="book-event">
-          <h3>select date and time</h3>
-          <div className="date-and-time">
-            <div className="date-picker">
-              <DatePicker
-                selected={selectedDate}
-                onChange={(date) => setSelectedDate(date)}
-                dateFormat="MMMM d, yyyy"
-                includeDates={eventStatus.stringDates.map((dateString) => new Date(dateString))}
-                customInput={<DateCustomInput />}
-              />
+            <img src={require(`../assets/event-images/${eventDetails.title.toLowerCase().replace(/ /g, '-')}.jpg`)} className="event-image" alt="Event Image" height={400} width={600} />
+            <h2 className="event-name">{eventDetails.title}</h2>
+            <div className="event-venue">
+              <img className="location-icon" alt="icon for location" src={images.location_icon} />
+              <div className="venue-name">{eventDetails.venue}</div>
             </div>
-            <div className="time-selector">
-              {eventStatus.eventTimes.length > 0 ? (
-                eventStatus.eventTimes.map((time) => (
-                  <button
-                    key={time}
+            <p className="event-description">{eventDetails.description}</p>
+          </div>
+          <div className="book-event">
+            <h3>select date and time</h3>
+            <div className="date-and-time">
+              <div className="date-picker">
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={(date) => setSelectedDate(date)}
+                  dateFormat="MMMM d, yyyy"
+                  includeDates={eventStatus.stringDates.map((dateString) => new Date(dateString))}
+                  customInput={<DateCustomInput />}
+                />
+              </div>
+              <div className="time-selector">
+                {eventStatus.eventTimes.length > 0 ? (
+                  eventStatus.eventTimes.map((time) => (
+                    <button
+                      key={time}
                     onClick={() => handleTimeSelect(time)}
                     className={selectedTime === time ? 'selected' : 'deselected'}
                   >
@@ -244,8 +190,8 @@ const EventPage = () => {
             <div className="ticket-selector">
               <p className="ticket-type-label">Ticket Type</p>
               <select value={ticketType} onChange={handleTicketTypeChange}>
-                <option value="VIP">VIP - ${prices.VIP}</option>
-                <option value="General">General - ${prices.General}</option>
+              <option value="General">General - ${eventDetails.generalPrice}</option>
+                <option value="VIP">VIP - ${eventDetails.vipPrice}</option>
               </select>
             </div>
             <div className="ticket-quantity">
