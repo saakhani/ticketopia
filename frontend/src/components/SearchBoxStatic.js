@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import "./SearchBoxDynamic.css";
-import images from './images.js';
+import "../styles/components/SearchBoxStatic.css";
+import images from '../assets/Images.js';
 import PropTypes from "prop-types";
 
 
-function SearchBoxDynamic() {
+function SearchBoxStatic({inputQuery}) {
   // State to manage the input value
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(inputQuery);
 
   // Event handler to update the input value
   const handleInputChange = (event) => {
@@ -30,10 +30,9 @@ function SearchBoxDynamic() {
       alert("Please enter a search term")
     }
     else{
-      window.location.href = '/search/' + inputValue;
+      window.location.href = '/Search/' + inputValue;
     }
   }
-
 
 
 
@@ -44,29 +43,30 @@ function SearchBoxDynamic() {
 
 
   return (
-    <div className='search-wrapper'>
+    <div className='search-wrapper-static'>
       <input
-        className='input-box'
+        className='input-box-static'
         type="text"
-        value={inputValue}          
+        value={inputValue}
         onChange={handleInputChange}
         placeholder="search for an event"
         onKeyPress={handleKeyPress}
       />
-      <button
-        className="search-button"
-        onClick={searchButtonEvent}>
+      {/* Display the input value */}
+      {/* <p>You typed: {inputValue}</p> */}
+      <button className='search-button-static' onClick={searchButtonEvent}>
         <img 
-            className="search-image"
-            src={images.search}
+            className='search-image-static'
+            src={images.search_icon}
             alt="Search Button"
-        //   style={{ width: '100px', height: 'auto' }} // Adjust the styling as needed
         />
       </button>
     </div>
   );
 }
 
-SearchBoxDynamic.propTypes = {};
+SearchBoxStatic.propTypes = {
+  inputQuery: PropTypes.string.isRequired,
+};
 
-export default SearchBoxDynamic;
+export default SearchBoxStatic;

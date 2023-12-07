@@ -1,7 +1,7 @@
  // SearchResultCard.js
 
  import React from 'react';
- import './SearchResultCard.css'; // Import the CSS file
+ import '../styles/components/SearchResultCard.css'; // Import the CSS file
  import { Outlet, Link } from "react-router-dom";
  
  const SearchResultCard = ({ eventDetailsH }) => {

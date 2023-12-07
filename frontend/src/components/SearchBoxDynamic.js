@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import "./SearchBoxStatic.css";
-import images from './images.js';
-import PropTypes from "prop-types";
+import "../styles/components/SearchBoxDynamic.css";
+import images from '../assets/Images.js';
 
 
-function SearchBoxStatic({inputQuery}) {
+function SearchBoxDynamic() {
   // State to manage the input value
-  const [inputValue, setInputValue] = useState(inputQuery);
+  const [inputValue, setInputValue] = useState('');
 
   // Event handler to update the input value
   const handleInputChange = (event) => {
@@ -36,6 +35,7 @@ function SearchBoxStatic({inputQuery}) {
 
 
 
+
   //check if any element from search-wrapper is in focus or not
   const isTextBoxFocused = () => {
     return document.activeElement === document.getElementById("search-wrapper");
@@ -43,30 +43,29 @@ function SearchBoxStatic({inputQuery}) {
 
 
   return (
-    <div className='search-wrapper-static'>
+    <div className='search-wrapper'>
       <input
-        className='input-box-static'
+        className='input-box'
         type="text"
-        value={inputValue}
+        value={inputValue}          
         onChange={handleInputChange}
         placeholder="search for an event"
         onKeyPress={handleKeyPress}
       />
-      {/* Display the input value */}
-      {/* <p>You typed: {inputValue}</p> */}
-      <button className='search-button-static' onClick={searchButtonEvent}>
+      <button
+        className="search-button"
+        onClick={searchButtonEvent}>
         <img 
-            className='search-image-static'
-            src={images.search}
+            className="search-image"
+            src={images.search_icon}
             alt="Search Button"
+        //   style={{ width: '100px', height: 'auto' }} // Adjust the styling as needed
         />
       </button>
     </div>
   );
 }
 
-SearchBoxStatic.propTypes = {
-  inputQuery: PropTypes.string.isRequired,
-};
+SearchBoxDynamic.propTypes = {};
 
-export default SearchBoxStatic;
+export default SearchBoxDynamic;

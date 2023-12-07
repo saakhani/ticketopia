@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import "./Search.css";
-import SearchResultCard from "./SearchResultCard.js";
-import Header from './Header.js';
+import "../styles/pages/SearchPage.css";
+import SearchResultCard from "../components/SearchResultCard.js";
+import Header from '../components/Header.js';
 import { useParams } from "react-router-dom";
 
 // Import images statically
-import artExhibitionImage from './images/art_exhibition.jpg';
-import techConferenceImage from './images/tech_conference.jpg';
-import foodFestivalImage from './images/food_festival.jpg';
-import comedyNightImage from './images/comedy_night.jpg';
-import fashionShowImage from './images/fashion_show.jpg';
-import scienceExpoImage from './images/science_expo.jpg';
-import fitnessExpoImage from './images/fitness_expo.jpg';
-import craftFairImage from './images/craft_fair.jpg';
-import gardenPartyImage from './images/garden_party.jpg';
-import wellnessWorkshopImage from './images/wellness_workshop.jpg';
+import artExhibitionImage from '../assets/event-images/art_exhibition.jpg';
+import techConferenceImage from '../assets/event-images/tech_conference.jpg';
+import foodFestivalImage from '../assets/event-images/food_festival.jpg';
+import comedyNightImage from '../assets/event-images/comedy_night.jpg';
+import fashionShowImage from '../assets/event-images/fashion_show.jpg';
+import scienceExpoImage from '../assets/event-images/science_expo.jpg';
+import fitnessExpoImage from '../assets/event-images/fitness_expo.jpg';
+import craftFairImage from '../assets/event-images/craft_fair.jpg';
+import gardenPartyImage from '../assets/event-images/garden_party.jpg';
+import wellnessWorkshopImage from '../assets/event-images/wellness_workshop.jpg';
 
 
-const Search = () => {
+const SearchPage = () => {
   const params = useParams();
   const [searchQuery] = useState(params.SearchBoxQuery);
   const [searchResults, setSearchResults] = useState([]);
@@ -101,4 +101,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchPage;

@@ -1,7 +1,6 @@
 import React from "react";
-import images from "./images.js";
-import "./Header.css";
-import PropTypes from "prop-types";
+import images from "../assets/Images.js";
+import "../styles/components/Header.css";
 
 import SearchBoxStatic from "./SearchBoxStatic.js";
 
