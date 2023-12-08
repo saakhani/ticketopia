@@ -127,6 +127,7 @@ const EventPage = () => {
        .post('http://localhost:8081/bookTicket', {
          eventID,
          bookingDate: dateString,
+         bookingTime: selectedTime,
          name, 
          email,   
          phone,
