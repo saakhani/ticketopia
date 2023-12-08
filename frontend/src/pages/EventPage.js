@@ -162,7 +162,7 @@ const EventPage = () => {
       <h1>Event Details</h1>
       <div className="event-body">
         <div className="event-details">
-            <img src={require(`../assets/event-images/${eventDetails.title.toLowerCase().replace(/ /g, '-')}.jpg`)} className="event-image" alt="Event Image" height={400} width={600} />
+            <img src={require(`../assets/event-images/${eventDetails.title.toLowerCase().replace(/ /g, '_')}.jpg`)} className="event-image" alt="Event Image" height={400} width={600} />
             <h2 className="event-name">{eventDetails.title}</h2>
             <div className="event-venue">
               <img className="location-icon" alt="icon for location" src={images.location_icon} />

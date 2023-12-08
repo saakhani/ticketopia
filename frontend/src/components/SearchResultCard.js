@@ -10,7 +10,7 @@ const SearchResultCard = ({ eventDetailsH }) => {
   return (
     <div className="search-result-card">
       <div className="result-image">
-        <img src={require(`../assets/event-images/${eventDetails.title.toLowerCase().replace(/ /g, '-')}.jpg`)} alt={`Event: ${eventDetails.title} at ${eventDetails.venue}`} />
+        <img src={require(`../assets/event-images/${eventDetails.title.toLowerCase().replace(/ /g, '_')}.jpg`)} alt={`Event: ${eventDetails.title} at ${eventDetails.venue}`} />
       </div>
       <div className="result-title">{eventDetails.title}</div>
       <div className="result-venue">{eventDetails.venue}</div>
