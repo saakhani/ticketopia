@@ -13,7 +13,6 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
   
 const Homepage = () => {
 
-  const [inputValue, setInputValue] = useState('');
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const { isLoggedIn, logout } = useAuth();
 
