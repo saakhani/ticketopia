@@ -15,7 +15,7 @@ import ProfileWindow from '../components/ProfileWindow.js';
 const Homepage = () => {
 
   const [isLoginVisible, setIsLoginVisible] = useState(false);
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn, user} = useAuth();
   const [isProfileVisible, setIsProfileVisible] = useState(false);
 
 
@@ -50,7 +50,7 @@ const Homepage = () => {
     <div id = "search-simple" className="search-simple">
         {isLoginVisible &&
         <div className="overlay" onClick={closeLoginWindow}>
-          <Login onLogin={handleLogin} onClose={closeLoginWindow} />
+          <Login onLogin={handleLogin} onClose={closeLoginWindow} onWindowClick={(e) => e.stopPropagation()}/>
         </div>
         }
         <div className="logo">
@@ -65,7 +65,7 @@ const Homepage = () => {
         {isLoggedIn && (
           <button className = "profile-button"
             onClick={profileButtonEvent}>      
-            <FontAwesomeIcon icon={icon({name: 'user', style: 'solid'})} style={{color: "#0391cb",}} />
+          <img className = "profile-image" src={require(`../assets/profile-pictures/${user.imgSrc}`)} alt="Profile" /> 
           </button>
         )}
                 {isProfileVisible && <div className='profile-overlay' onClick={closeProfileWindow}>

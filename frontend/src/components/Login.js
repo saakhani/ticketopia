@@ -7,13 +7,14 @@ import { useAuth } from '../contexts/AuthContext.js';
 const Login = ({ onLogin, onClose, onWindowClick }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const { isLoggedIn, login } = useAuth();
 
 	const handleLogin = () => {
-		// Mocked user data (replace with your dummy data)
+		// Mocked user data (replace with check from backend)
 		const dummyUserData = {
-			username: 'user',
+			username: 'm.lakhani.24471@khi.iba.edu.pk',
 			password: 'password',
 		};
 
@@ -24,7 +25,7 @@ const Login = ({ onLogin, onClose, onWindowClick }) => {
 			onLogin(token);
 			login()
 		} else {
-			console.error('Login failed: Invalid credentials');
+			setErrorMessage('Invalid credentials. Please try again.');
 		}
 	};
 
@@ -37,6 +38,7 @@ const Login = ({ onLogin, onClose, onWindowClick }) => {
 			<input className="username" type="text" placeholder='email' value={username} onChange={(e) => setUsername(e.target.value)} />
 			<input className="password" type="password" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 			<button className="login-button" onClick={handleLogin}>login</button>
+			{errorMessage && <div className='error-message'>{errorMessage}</div>}
 			<div className='login-footer'>Don't have an account? <a href='/'>Sign up</a></div>
 		</div>
 	);

@@ -13,7 +13,7 @@ function Header({inputQueryHeader}) {
 
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(false);
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn, logout, user } = useAuth();
 
   const loginButtonEvent = (e) => {
     e.preventDefault();
@@ -51,10 +51,6 @@ function Header({inputQueryHeader}) {
           <ProfileWindow 
             onWindowClick={(e) => e.stopPropagation()}
             onClose = {closeProfileWindow}
-            user={{
-              email: 'user@example.com',
-              name: 'John Doe'
-            }} 
           />
         </div>
         }
@@ -70,8 +66,9 @@ function Header({inputQueryHeader}) {
           login
         </button>)
         }
-        {isLoggedIn && (<button className = "profile-button-header" onClick={profileButtonEvent}>      
-          <FontAwesomeIcon icon={icon({name: 'user', style: 'solid'})} style={{color: "#0391cb",}} />
+        {isLoggedIn && (<button className = "profile-button-header" onClick={profileButtonEvent}>
+          <img className = "profile-image" src={require(`../assets/profile-pictures/${user.imgSrc}`)} alt="Profile" />      
+          {/* <FontAwesomeIcon icon={icon({name: 'user', style: 'solid'})} style={{color: "#0391cb",}} /> */}
         </button>)
         }
       </div>

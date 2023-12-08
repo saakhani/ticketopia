@@ -1,5 +1,6 @@
 // AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import Images from '../assets/Images.js';
 
 const AuthContext = createContext();
 
@@ -11,14 +12,30 @@ export const AuthProvider = ({ children }) => {
     if (storedToken) {
       setIsLoggedIn(true);
     }
+    setUser({
+      name: 'Saad Lakhani',
+      email: 'm.lakhani.24471@khi.iba.edu.pk',
+      phone: '+92 322 2828114',
+      imgSrc: 'm.lakhani.24471@khi.iba.edu.pk.jpg'
+    });
   }, []);
 
 
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
 
   const login = () => {
     // Perform your login logic
+    // set user data from backend
+    setUser({
+      name: 'Saad Lakhani',
+      email: 'm.lakhani.24471@khi.iba.edu.pk',
+      phone: '+92 322 2828114',
+      imgSrc: 'm.lakhani.24471@khi.iba.edu.pk.jpg'
+    });
+
+
     setIsLoggedIn(true);
     const expirationDate = new Date();
     expirationDate.setDate(expirationDate.getDate() + 7); // Expires in 7 days
@@ -30,10 +47,11 @@ export const AuthProvider = ({ children }) => {
     // Perform your logout logic
     setIsLoggedIn(false);
     document.cookie = 'authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; secure; path=/;';
+    setUser({});
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{  user, isLoggedIn, login, logout}}>
       {children}
     </AuthContext.Provider>
   );

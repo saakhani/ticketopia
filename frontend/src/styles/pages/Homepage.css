@@ -48,10 +48,16 @@ html {
   outline: 0;
   border: 0;
   margin-bottom: 20px;
+  padding: 0;
+}
+
+.logo {
+  margin-left: 15px;
+  margin-top: 20px;
 }
 
 .profile-button:hover{
-  border: #0391cb 2px solid;
+  outline:  #0391cb 2px solid;
 }
 
 .welcome-headline {
@@ -108,4 +114,10 @@ html {
   padding-top: 20px;
   padding-right: 15px;
   justify-content: flex-end;
+}
+
+.profile-image{
+  border-radius: 54px;
+  height: 60px;
+  width: 60px;
 }

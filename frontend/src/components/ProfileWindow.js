@@ -2,12 +2,14 @@ import React from 'react';
 import "../styles/components/ProfileWindow.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { useAuth } from '../contexts/AuthContext.js';
+import { useAuth} from '../contexts/AuthContext.js';
 
-const ProfileWindow = ({ user, onWindowClick, onClose }) => {
-    const { isLoggedIn, logout } = useAuth();
+const ProfileWindow = ({onWindowClick, onClose }) => {
+    const { isLoggedIn, logout, user } = useAuth();
 
-    const { email, name } = user;
+    const name = user.name;
+		const email = user.email;
+		// const profilePicture = require(`../assets/profile-pictures/${email}.jpg`)
 
     const handleViewProfile = () => {
         // Handle view profile logic here
@@ -39,6 +41,7 @@ const ProfileWindow = ({ user, onWindowClick, onClose }) => {
 					<a className='view-profile' href='/'>view profile</a>
 				</div>
 				<div className='right'>
+					<img className = "profile-image" src={require(`../assets/profile-pictures/${user.imgSrc}`)} alt="Profile" />  
 					<button className='logout-button' onClick={handleLogout}>
 							<FontAwesomeIcon icon={icon({name: 'right-from-bracket', style: 'solid'})} style={{color: "#0391cb",}} />
 					</button>

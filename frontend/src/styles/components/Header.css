@@ -61,10 +61,17 @@
     text-align: center;
     outline: 0;
     border: 0;
+    padding: 0px;
+  }
+
+  .header .profile-image{
+    border-radius: 54px;
+    height: 60px;
+    width: 60px;
   }
 
   .header .profile-button-header:hover{
-    border: #0391cb 2px solid;
+    outline: #0391cb 2px solid;
   }
 
   .header .overlay {
