@@ -75,7 +75,7 @@ const EventPage = () => {
 
           setTicketType('General');
           setTicketPrice(eventData.generalPrice);
-    
+          setLoading(false);
         }
       })
       .catch((error) => {
@@ -87,10 +87,8 @@ const EventPage = () => {
           vipPrice: 0,
           generalPrice: 0,
         });
-      })
-      .finally(() => {
         setLoading(false);
-      });
+      })
   }, [eventID])
 
   const handleTimeSelect = (time) => {
