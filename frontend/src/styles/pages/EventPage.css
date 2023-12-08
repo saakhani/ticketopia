@@ -1,4 +1,15 @@
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20%;
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 36px;
+    font-weight: 600;
+    color: #2a2d34;
 
+}
 
 .event-body {
     display: flex;

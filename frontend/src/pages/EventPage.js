@@ -13,6 +13,8 @@ const EventPage = () => {
   const params = useParams();
   const eventID = params.EventID;
 
+  const [loading, setLoading] = useState(true);
+
   const [eventDetails, setEventDetails] = useState({
 
     title: '',
@@ -78,6 +80,16 @@ const EventPage = () => {
       })
       .catch((error) => {
         console.error('Error fetching event details:', error);
+        setEventDetails({
+          title: 'Event Not Found',
+          venue: '',
+          description: '',
+          vipPrice: 0,
+          generalPrice: 0,
+        });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [eventID])
 
@@ -140,6 +152,9 @@ const EventPage = () => {
     }
   };
 
+  if (loading) {
+    return <div class="loading">loading...</div>;
+  }
 
   return (
     <div className="event-page">
