@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import '../styles/components/Login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { useAuth } from '../contexts/AuthContext.js';
 
 const Login = ({ onLogin, onClose }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+
+	const { isLoggedIn, login } = useAuth();
 
 	const handleLogin = () => {
 		// Mocked user data (replace with your dummy data)
@@ -19,6 +22,7 @@ const Login = ({ onLogin, onClose }) => {
 			// Simulate a successful login by passing a token (you can generate a random string)
 			const token = 'your_dummy_token';
 			onLogin(token);
+			login()
 		} else {
 			console.error('Login failed: Invalid credentials');
 		}
