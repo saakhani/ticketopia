@@ -12,6 +12,7 @@ import ProfileWindow from './ProfileWindow.js';
 function Header({inputQueryHeader}) {
 
   const [isLoginVisible, setIsLoginVisible] = useState(false);
+  const [isProfileVisible, setIsProfileVisible] = useState(false);
   const { isLoggedIn, logout } = useAuth();
 
   const loginButtonEvent = (e) => {
@@ -31,26 +32,32 @@ function Header({inputQueryHeader}) {
   }
 
   const profileButtonEvent = () => {
-    logout()
+    setIsProfileVisible(true);
   }
 
-
-    // console.log(inputQueryHeader);
+  const closeProfileWindow = () => {
+    if (isProfileVisible) {
+      setIsProfileVisible(false);
+    }
+  }
 
     return(
       <div className="header">
-        {isLoginVisible && <div className="overlay">
-          <Login onLogin={handleLogin} onClose={closeLoginWindow} />
+        {isLoginVisible && <div className="overlay" onClick={closeLoginWindow}>
+          <Login onLogin={handleLogin} onClose={closeLoginWindow} onWindowClick={(e) => e.stopPropagation()} />
         </div>
         }
-        <div className='profile-window-popup'>
+        {isProfileVisible && <div className='profile-overlay' onClick={closeProfileWindow}>
           <ProfileWindow 
+            onWindowClick={(e) => e.stopPropagation()}
+            onClose = {closeProfileWindow}
             user={{
               email: 'user@example.com',
               name: 'John Doe'
             }} 
           />
         </div>
+        }
         <div className="logo">
           <button className="logo-button" onClick={() => window.location.href = '/'}>
             <img src={images.logo_symbol} alt="Logo" />

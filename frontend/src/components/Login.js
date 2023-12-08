@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useAuth } from '../contexts/AuthContext.js';
 
-const Login = ({ onLogin, onClose }) => {
+const Login = ({ onLogin, onClose, onWindowClick }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -29,7 +29,7 @@ const Login = ({ onLogin, onClose }) => {
 	};
 
 	return (
-		<div className='login-popup'>
+		<div className='login-popup' onClick={onWindowClick}>
 			<button className='exit-button' onClick={onClose}>
 				<FontAwesomeIcon icon={icon({name: 'xmark', style: 'solid'})} style={{color: "#0391cb",}} />
 			</button>

@@ -47,6 +47,7 @@ html {
   text-align: center;
   outline: 0;
   border: 0;
+  margin-bottom: 20px;
 }
 
 .profile-button:hover{
@@ -96,4 +97,15 @@ html {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+
+.profile-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 1000;
+  padding-top: 20px;
+  padding-right: 15px;
+  justify-content: flex-end;
 }

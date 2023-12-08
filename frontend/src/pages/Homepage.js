@@ -8,6 +8,7 @@ import Login from '../components/Login.js';
 import { useAuth } from '../contexts/AuthContext.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import ProfileWindow from '../components/ProfileWindow.js';
 
 
   
@@ -15,6 +16,7 @@ const Homepage = () => {
 
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const { isLoggedIn, logout } = useAuth();
+  const [isProfileVisible, setIsProfileVisible] = useState(false);
 
 
   
@@ -35,13 +37,19 @@ const Homepage = () => {
   }
 
   const profileButtonEvent = () => {
-    logout()
+    setIsProfileVisible(true);
+  }
+
+  const closeProfileWindow = () => {
+    if (isProfileVisible) {
+      setIsProfileVisible(false);
+    }
   }
 
   return (
     <div id = "search-simple" className="search-simple">
         {isLoginVisible &&
-        <div className="overlay">
+        <div className="overlay" onClick={closeLoginWindow}>
           <Login onLogin={handleLogin} onClose={closeLoginWindow} />
         </div>
         }
@@ -60,6 +68,17 @@ const Homepage = () => {
             <FontAwesomeIcon icon={icon({name: 'user', style: 'solid'})} style={{color: "#0391cb",}} />
           </button>
         )}
+                {isProfileVisible && <div className='profile-overlay' onClick={closeProfileWindow}>
+          <ProfileWindow 
+            onWindowClick={(e) => e.stopPropagation()}
+            onClose = {closeProfileWindow}
+            user={{
+              email: 'user@example.com',
+              name: 'John Doe'
+            }} 
+          />
+        </div>
+        }
         <div className="welcome-headline">
           welcome!
         </div>

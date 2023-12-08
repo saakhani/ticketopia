@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useAuth } from '../contexts/AuthContext.js';
 
-const ProfileWindow = ({ user }) => {
+const ProfileWindow = ({ user, onWindowClick, onClose }) => {
     const { isLoggedIn, logout } = useAuth();
 
     const { email, name } = user;
@@ -17,12 +17,18 @@ const ProfileWindow = ({ user }) => {
         // Handle event history logic here
     };
 
-    const handleLogout = () => {
-        logout();
-    };
+		const handleLogout = () => {
+			handleClose();
+			logout()
+		}
+
+		const handleClose = () => {
+			//call the onClose function passed from the parent component
+			onClose();
+		}
 
     return (
-			<div className="profile-window">
+			<div className="profile-window" onClick={onWindowClick}>
 				<div className='left'>
 					<p className='user-name'>
 						{name}
@@ -30,6 +36,7 @@ const ProfileWindow = ({ user }) => {
 					<p className='user-email'>
 						{email}
 					</p>
+					<a className='view-profile' href='/'>view profile</a>
 				</div>
 				<div className='right'>
 					<button className='logout-button' onClick={handleLogout}>
