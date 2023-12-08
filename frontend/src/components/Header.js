@@ -7,6 +7,7 @@ import { useAuth } from '../contexts/AuthContext.js';
 import Login from '../components/Login.js';
 
 import SearchBoxStatic from "./SearchBoxStatic.js";
+import ProfileWindow from './ProfileWindow.js';
 
 function Header({inputQueryHeader}) {
 
@@ -37,33 +38,36 @@ function Header({inputQueryHeader}) {
     // console.log(inputQueryHeader);
 
     return(
-        <div className="header">
-                  {isLoginVisible &&
-        <div className="overlay">
+      <div className="header">
+        {isLoginVisible && <div className="overlay">
           <Login onLogin={handleLogin} onClose={closeLoginWindow} />
         </div>
         }
-            <div className="logo">
-                <button className="logo-button" onClick={() => window.location.href = '/'}>
-                    <img src={images.logo_symbol} alt="Logo" />
-                </button>
-            </div>
-            <div className="search-box-static">
-                <SearchBoxStatic inputQuery= {inputQueryHeader}/>
-            </div>
-            {!isLoggedIn && (
-          <button className = "login-button-header"
-            onClick={loginButtonEvent} type="submit">      
-            login
-          </button>
-        )}
-        {isLoggedIn && (
-          <button className = "profile-button-header"
-            onClick={profileButtonEvent}>      
-            <FontAwesomeIcon icon={icon({name: 'user', style: 'solid'})} style={{color: "#0391cb",}} />
-          </button>
-        )}
+        <div className='profile-window-popup'>
+          <ProfileWindow 
+            user={{
+              email: 'user@example.com',
+              name: 'John Doe'
+            }} 
+          />
         </div>
+        <div className="logo">
+          <button className="logo-button" onClick={() => window.location.href = '/'}>
+            <img src={images.logo_symbol} alt="Logo" />
+          </button>
+        </div>
+        <div className="search-box-static">
+          <SearchBoxStatic inputQuery= {inputQueryHeader}/>
+        </div>
+        {!isLoggedIn && (<button className = "login-button-header" onClick={loginButtonEvent} type="submit">      
+          login
+        </button>)
+        }
+        {isLoggedIn && (<button className = "profile-button-header" onClick={profileButtonEvent}>      
+          <FontAwesomeIcon icon={icon({name: 'user', style: 'solid'})} style={{color: "#0391cb",}} />
+        </button>)
+        }
+      </div>
     )
     
 }

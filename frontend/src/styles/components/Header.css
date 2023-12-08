@@ -5,29 +5,29 @@
     height: 100px;
     width: 100%;
 }
-
-img {
+.header img {
     height: 60px;
 }
 
-.search-box-static {
+.header .search-box-static {
     margin-top: 20px;
     margin-left: 30px;
 }
 
-.logo {
+.header .logo {
     margin-left: 30px;
     margin-top: 20px;
 }
 
-.logo-button{
+.header .logo-button{
     border: 0px;
     outline: 0px;
     background: transparent;
 }
 
-.login-button-header{
+.header .login-button-header{
     background-color: #0391cb;
+    flex-shrink: 0;
     border-radius: 54px;
     color: #ffffff;
     font-family: "M PLUS Rounded 1c", Helvetica;
@@ -45,7 +45,7 @@ img {
     border: 0;
   }
 
-  .profile-button-header{
+  .header .profile-button-header{
     border-radius: 54px;
     color: #ffffff;
     font-family: "M PLUS Rounded 1c", Helvetica;
@@ -63,11 +63,11 @@ img {
     border: 0;
   }
 
-  .profile-button-header:hover{
+  .header .profile-button-header:hover{
     border: #0391cb 2px solid;
   }
 
-  .overlay {
+  .header .overlay {
     position: fixed;
     top: 0;
     left: 0;
