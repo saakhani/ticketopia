@@ -138,7 +138,7 @@ const EventPage = () => {
          // Handle the booking response (success or failure)
          if (response.data.success) {
            // Booking successful, redirect to BookedPage
-           window.location.href = '/EventPage/BookedPage';
+           window.location.href = '/event/success';
          } else {
            // Booking failed, show an alert or handle accordingly
            alert('Booking failed. Please try again.');

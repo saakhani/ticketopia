@@ -1,0 +1,26 @@
+.user-details {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.event-history-table {
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+thead {
+  background-color: #f2f2f2;
+}

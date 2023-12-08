@@ -39,7 +39,7 @@ const Login = ({ onLogin, onClose, onWindowClick }) => {
 			<input className="password" type="password" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 			<button className="login-button" onClick={handleLogin}>login</button>
 			{errorMessage && <div className='error-message'>{errorMessage}</div>}
-			<div className='login-footer'>Don't have an account? <a href='/'>Sign up</a></div>
+			<div className='login-footer'>Don't have an account? <a href='/SignUpPage'>Sign up</a></div>
 		</div>
 	);
 };

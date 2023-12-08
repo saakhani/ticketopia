@@ -15,7 +15,7 @@ const SearchResultCard = ({ eventDetailsH }) => {
       <div className="result-title">{eventDetails.title}</div>
       <div className="result-venue">{eventDetails.venue}</div>
       <div className="result-description">{eventDetails.description}</div>
-      <Link className="result-link" to={`/EventPage/${eventDetails.eventID}`}>
+      <Link className="result-link" to={`/event/${eventDetails.eventID}`}>
         Book Now
       </Link>
     </div>

@@ -38,7 +38,7 @@ const ProfileWindow = ({onWindowClick, onClose }) => {
 					<p className='user-email'>
 						{email}
 					</p>
-					<a className='view-profile' href='/'>view profile</a>
+					<a className='view-profile' href='/user'>view profile</a>
 				</div>
 				<div className='right'>
 					<img className = "profile-image" src={require(`../assets/profile-pictures/${user.imgSrc}`)} alt="Profile" />  
