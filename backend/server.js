@@ -123,18 +123,18 @@ app.post('/eventDetails', (req, res) => {
 });
 
 app.post('/bookTicket', (req, res) => {
-  const { eventID, bookingDate, name, phone, category } = req.body;
+  const { eventID, bookingDate, name, email, phone, category } = req.body;
 
   // Execute the bookEvent procedure in the database
   const executeBookEventProcedure = () => {
     return new Promise((resolve, reject) => {
       const bookEventProcedure = `
-        CALL bookEvent(?, ?, ?, ?, ?);
+        CALL bookEvent(?, ?, ?, ?, ?, ?);
       `;
 
       db.query(
         bookEventProcedure,
-        [eventID, bookingDate, name,  phone, category,],
+        [eventID, bookingDate, name, email, phone, category,],
         (err, results) => {
           if (err) {
             // Handle specific SQLSTATE errors or check result values

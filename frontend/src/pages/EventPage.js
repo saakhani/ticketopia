@@ -127,7 +127,8 @@ const EventPage = () => {
        .post('http://localhost:8081/bookTicket', {
          eventID,
          bookingDate: dateString,
-         name, // Convert date to string if needed    
+         name, 
+         email,   
          phone,
          category: ticketType,
          
