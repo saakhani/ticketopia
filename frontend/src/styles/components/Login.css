@@ -1,0 +1,82 @@
+.login-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 500px; */
+    padding: 20px;
+    background-color: #e8e8e8;
+    border: 2.5px solid #0391cb;
+    border-radius: 36px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.username, .password{
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 19px;
+    font-weight: 500;
+    color: #2a2d3f;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 18px;
+    min-width: 450px;
+    border: #2a2d3f 2px solid;
+    outline: 0;
+    vertical-align: middle;
+}
+.username:focus, .password:focus{
+    border: #2a2d3f 2px solid;
+    outline: 0;
+}
+
+.login-popup .login-button{
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 10px;
+    outline: 0;
+    width: 220px;
+    vertical-align: middle;
+    background-color: #0391cb;
+    cursor: pointer;
+
+}
+
+.login-title {
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 24px;
+    font-weight: 600;
+    color: #2a2d3f;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.login-footer {
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2a2d3f;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.exit-button {
+    border: 0;
+    outline: 0;
+    padding: 0;
+    background-color: transparent;
+    margin-bottom: auto;
+    margin-left: auto;
+    font-size: 30px;
+    margin-top: -2px;
+}
+
