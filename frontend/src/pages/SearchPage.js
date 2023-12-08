@@ -5,16 +5,16 @@ import Header from '../components/Header.js';
 import { useParams } from "react-router-dom";
 
 // Import images statically
-import artExhibitionImage from '../assets/event-images/art_exhibition.jpg';
-import techConferenceImage from '../assets/event-images/tech_conference.jpg';
-import foodFestivalImage from '../assets/event-images/food_festival.jpg';
-import comedyNightImage from '../assets/event-images/comedy_night.jpg';
-import fashionShowImage from '../assets/event-images/fashion_show.jpg';
-import scienceExpoImage from '../assets/event-images/science_expo.jpg';
-import fitnessExpoImage from '../assets/event-images/fitness_expo.jpg';
-import craftFairImage from '../assets/event-images/craft_fair.jpg';
-import gardenPartyImage from '../assets/event-images/garden_party.jpg';
-import wellnessWorkshopImage from '../assets/event-images/wellness_workshop.jpg';
+// import artExhibitionImage from '../assets/event-images/art_exhibition.jpg';
+// import techConferenceImage from '../assets/event-images/tech_conference.jpg';
+// import foodFestivalImage from '../assets/event-images/food_festival.jpg';
+// import comedyNightImage from '../assets/event-images/comedy_night.jpg';
+// import fashionShowImage from '../assets/event-images/fashion_show.jpg';
+// import scienceExpoImage from '../assets/event-images/science_expo.jpg';
+// import fitnessExpoImage from '../assets/event-images/fitness_expo.jpg';
+// import craftFairImage from '../assets/event-images/craft_fair.jpg';
+// import gardenPartyImage from '../assets/event-images/garden_party.jpg';
+// import wellnessWorkshopImage from '../assets/event-images/wellness_workshop.jpg';
 
 
 const SearchPage = () => {
