@@ -163,7 +163,7 @@ const EventPage = () => {
   return (
     <div className="event-page">
       <div className="header">
-        <Header />
+        <Header inputQueryHeader={""} />
       </div>
       <h1>Event Details</h1>
       <div className="event-body">

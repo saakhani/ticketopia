@@ -1,26 +1,121 @@
-.user-details {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-}
-
 .event-history-table {
   overflow-x: auto; /* Enables horizontal scrolling */
+  margin-top: 20px;
+  border-radius: 20px;
+  margin-left: 10px;
 }
 
 table {
   width: 100%;
-  border-collapse: collapse;
 }
 
-table, th, td {
-  border: 1px solid black;
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #0392cb11;
+  
+}
+
+tbody {
+  font-family: "M PLUS Rounded 1c", Helvetica;
+  font-weight: 400;
+  font-size: 18px;
+  color: #2a2d34;
 }
 
 th, td {
-  padding: 8px;
+  padding: 12px;
   text-align: left;
 }
 
 thead {
-  background-color: #f2f2f2;
+  background-color: #0391cb;
+  color: white;
+  font-family: "M PLUS Rounded 1c", Helvetica;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.user-page-content {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.user-details-heading, .event-details-heading{
+  font-family: "M PLUS Rounded 1c", Helvetica;
+  font-weight: 500;
+  font-size: 36px;
+  color: #2a2d34;
+  margin: 0;
+}
+
+.event-details-heading{
+  margin-top: 20px;
+}
+
+.user-details-content {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.event-details-content{
+  margin-top: 20px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-family: "M PLUS Rounded 1c", Helvetica;
+  color: #2a2d34;
+  margin-left: 20px;
+}
+
+.user-image{
+  padding: 10px;
+}
+
+.profile-image-user-page {
+  width: 200px;
+  height: 200px;
+  border-radius: 54px;
+}
+
+.user-details-name{
+  font-family: "M PLUS Rounded 1c", Helvetica;
+  font-size: 36px;
+  font-weight: 600;
+  background: transparent;
+  color: #2a2d3f;
+  border: 0;
+  outline: 0;
+}
+
+.user-details-email {
+  margin-top: -10px;
+  padding-top: 0px;
+  font-family: "M PLUS Rounded 1c", Helvetica;
+  font-size: 22px;
+  font-weight: 300;
+  background: transparent;
+  color: #2a2d3f;
+  border: 0;
+  outline: 0;
+  text-decoration: none; /* Added to remove underline */
+}
+
+.user-details-phone {
+  margin-top: -10px;
+  padding-top: 0px;
+  font-family: "M PLUS Rounded 1c", Helvetica;
+  font-size: 22px;
+  font-weight: 300;
+  background: transparent;
+  color: #2a2d3f;
+  border: 0;
+  outline: 0;
+  text-decoration: none; /* Added to remove underline */
 }

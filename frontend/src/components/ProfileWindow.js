@@ -20,9 +20,17 @@ const ProfileWindow = ({onWindowClick, onClose }) => {
     };
 
 		const handleLogout = () => {
+			if (window.location.pathname === '/user'){
+				window.location.href = '/';
+			}
 			handleClose();
-			logout()
-		}
+			logout();
+
+			// Check if the current page is the user page
+			// if (window.location.pathname === '/user') {
+			// 	window.location.href = '/';
+			// }
+		};
 
 		const handleClose = () => {
 			//call the onClose function passed from the parent component
