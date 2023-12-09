@@ -4,10 +4,11 @@ import "../styles/components/Header.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useAuth } from '../contexts/AuthContext.js';
-import Login from '../components/Login.js';
+import Login from './LoginSignUp.js';
 
 import SearchBoxStatic from "./SearchBoxStatic.js";
 import ProfileWindow from './ProfileWindow.js';
+import SignUp from './SignUp.js';
 
 function Header({inputQueryHeader}) {
 
@@ -41,10 +42,14 @@ function Header({inputQueryHeader}) {
     }
   }
 
+  const handleSignUp = (userData) => {
+    setIsLoginVisible(false);
+  }
+
     return(
       <div className="header">
         {isLoginVisible && <div className="overlay" onClick={closeLoginWindow}>
-          <Login onLogin={handleLogin} onClose={closeLoginWindow} onWindowClick={(e) => e.stopPropagation()} />
+          <Login onSignUp = {handleSignUp} onLogin={handleLogin} onClose={closeLoginWindow} onWindowClick={(e) => e.stopPropagation()} />
         </div>
         }
         {isProfileVisible && <div className='profile-overlay' onClick={closeProfileWindow}>

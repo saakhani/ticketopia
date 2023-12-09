@@ -4,7 +4,7 @@ import "../styles/pages/Homepage.css";
 import "../assets/Images.js";
 import images from "../assets/Images.js";
 import SearchBoxDynamic from "../components/SearchBoxDynamic.js";
-import Login from '../components/Login.js';
+import Login from '../components/LoginSignUp.js';
 import { useAuth } from '../contexts/AuthContext.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
@@ -36,6 +36,10 @@ const Homepage = () => {
     // alert('You are now logged in with token: ' + token);
   }
 
+  const handleSignUp = (userData) => {
+    setIsLoginVisible(false);
+  }
+
   const profileButtonEvent = () => {
     setIsProfileVisible(true);
   }
@@ -50,7 +54,7 @@ const Homepage = () => {
     <div id = "search-simple" className="search-simple">
         {isLoginVisible &&
         <div className="overlay" onClick={closeLoginWindow}>
-          <Login onLogin={handleLogin} onClose={closeLoginWindow} onWindowClick={(e) => e.stopPropagation()}/>
+          <Login onSignUp={handleSignUp} onLogin={handleLogin} onClose={closeLoginWindow} onWindowClick={(e) => e.stopPropagation()}/>
         </div>
         }
         <div className="logo">

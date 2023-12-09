@@ -341,13 +341,14 @@ h3 {
     text-align: center;
 }
 
-.event-page > .user-name, 
-.event-page > .user-email, 
-.event-page > .user-phone {
+.event-page .user-name-input, 
+.event-page .user-email-input, 
+.event-page .user-phone-input {
     font-family: "M PLUS Rounded 1c", Helvetica;
     font-size: 20px;
     font-weight: 500;
-    border: #0391cb 2px solid;
+    border: 0;
+    border: #2a2d34 2px solid;
     background-color: #ececec;
     border-radius: 18px;
     height: 50px;
@@ -358,9 +359,9 @@ h3 {
     margin-bottom: 10px;
 }
 
-.event-page > .user-name:focus, 
-.event-page > .user-email:focus, 
-.event-page > .user-phone:focus{
+.event-page .user-name-input:focus, 
+.event-page .user-email-input:focus, 
+.event-page .user-phone-input:focus{
     font-family: "M PLUS Rounded 1c", Helvetica;
     font-size: 20px;
     font-weight: 500;
@@ -370,17 +371,18 @@ h3 {
     height: 50px;
     color: #0391cb;
     text-align: left;
+    outline: none;
 }
 
-.event-page > .user-name{
+.event-page .user-name-input{
     min-width: 710px;
 }
 
-.event-page > .user-email{
+.event-page .user-email-input{
     min-width: 385px;
 }
 
-.event-page > .user-phone{
+.event-page .user-phone-input{
     min-width: 285px;
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef, isValidElement } from 'react';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
 import images from '../assets/Images.js';
@@ -8,12 +8,15 @@ import '../styles/components/CustomDatePicker.css';
 import Header from '../components/Header.js';
 import { useParams } from 'react-router-dom';
 import { set } from 'date-fns';
+import { useAuth } from '../contexts/AuthContext.js';
 
 const EventPage = () => {
   const params = useParams();
   const eventID = params.EventID;
 
   const [loading, setLoading] = useState(true);
+  const { isLoggedIn, user } = useAuth();
+  const [isEvent, setIsEvent] = useState(true);
 
   const [eventDetails, setEventDetails] = useState({
 
@@ -36,9 +39,9 @@ const EventPage = () => {
   const [ticketType, setTicketType] = useState('VIP');
   const [ticketPrice, setTicketPrice] = useState(0);
   const [numTickets, setNumTickets] = useState(1);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState(isLoggedIn ? user.name : '');
+  const [email, setEmail] = useState(isLoggedIn ? user.email : '');
+  const [phone, setPhone] = useState(isLoggedIn ? user.phone : '');
   
 
   const DateCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -88,6 +91,7 @@ const EventPage = () => {
           generalPrice: 0,
         });
         setLoading(false);
+        setIsEvent(false);
       })
   }, [eventID])
 
@@ -222,17 +226,28 @@ const EventPage = () => {
             </div>
           </div>
           <h3>enter your information</h3>
-          <div className="user-info">
-            <input className="user-name" type="text" placeholder="name" onChange={(e) => setName(e.target.value)} />
-            <input className="user-email" type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-            <input className="user-phone" type="text" placeholder="phone" onChange={(e) => setPhone(e.target.value)} />
-          </div>
-          <div className="total-price">
-            <p className="price-label">Total Price: ${ticketPrice * numTickets}</p>
-            <button className="checkout-button" onClick={handleCheckout}>
-              checkout
-            </button>
-          </div>
+          {!isLoggedIn && (
+            <div className="user-info">
+              <input className="user-name-input" type="text" placeholder="name" onChange={(e) => setName(e.target.value)} />
+              <input className="user-email-input" type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+              <input className="user-phone-input" type="text" placeholder="phone" onChange={(e) => setPhone(e.target.value)} />
+            </div>
+          )}
+          {isLoggedIn && (
+            <div className="user-info">
+              <input className="user-name-input" type="text"  value = {user.name} disabled onChange={(e) => setName(e.target.value)} />
+              <input className="user-email-input" type="text" value = {user.email} disabled onChange={(e) => setEmail(e.target.value)} />
+              <input className="user-phone-input" type="text" value = {user.phone} disabled onChange={(e) => setPhone(e.target.value)} />
+            </div>
+          )}
+          {isEvent && (
+            <div className="total-price">
+              <p className="price-label">Total Price: ${ticketPrice * numTickets}</p>
+                <button className="checkout-button" onClick={handleCheckout}>
+                  checkout
+                </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

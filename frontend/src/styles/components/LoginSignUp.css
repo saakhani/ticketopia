@@ -16,7 +16,21 @@
     z-index: 1000;
 }
 
-.username, .password{
+.login-comp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-comp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.username, .password, .confirm-password, .fullname, .phone{
     font-family: "M PLUS Rounded 1c", Helvetica;
     font-size: 19px;
     font-weight: 500;
@@ -32,7 +46,7 @@
     outline: 0;
     vertical-align: middle;
 }
-.username:focus, .password:focus{
+.username:focus, .password:focus, .confirm-password:focus, .fullname:focus, .phone:focus{
     border: #2a2d3f 2px solid;
     outline: 0;
 }
@@ -51,7 +65,23 @@
 
 }
 
-.login-title {
+.login-popup .signup-button{
+    font-family: "M PLUS Rounded 1c", Helvetica;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 10px;
+    outline: 0;
+    width: 220px;
+    vertical-align: middle;
+    background-color: #0391cb;
+    cursor: pointer;
+    border-radius: 54px;
+    border: 0;
+    height: 60px;
+}
+
+.login-title, .signup-title {
     font-family: "M PLUS Rounded 1c", Helvetica;
     font-size: 24px;
     font-weight: 600;
@@ -60,7 +90,7 @@
     margin-bottom: 20px;
 }
 
-.login-footer {
+.login-footer, .signup-footer {
     font-family: "M PLUS Rounded 1c", Helvetica;
     font-size: 16px;
     font-weight: 500;
