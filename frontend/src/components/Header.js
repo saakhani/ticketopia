@@ -8,7 +8,6 @@ import Login from './LoginSignUp.js';
 
 import SearchBoxStatic from "./SearchBoxStatic.js";
 import ProfileWindow from './ProfileWindow.js';
-import SignUp from './SignUp.js';
 
 function Header({inputQueryHeader}) {
 
