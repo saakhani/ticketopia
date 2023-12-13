@@ -174,6 +174,49 @@ app.post('/bookTicket', (req, res) => {
 });
 
 
+app.post('/insertData', (req, res) => {
+  const { name, email, phone, password } = req.body;
+
+  // Handle the request and insert data into the 'signup' table
+  const sql = 'INSERT INTO signup (name, email, phone, password) VALUES (?, ?, ?, ?)';
+
+  // Assuming you have a database connection named 'db'
+  db.query(sql, [name, email, phone, password], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      return res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+
+    console.log('Data inserted successfully');
+    res.status(201).json({ success: true, message: 'Data inserted successfully' });
+  });
+});
+
+
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  // Execute the loginProcedure stored procedure in the database
+  const loginProcedure = 'CALL loginProcedure(?, ?)';
+  db.query(loginProcedure, [email, password], (error, results) => {
+    if (error) {
+      console.error('Error calling loginProcedure stored procedure:', error);
+      return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+
+    // Assuming loginProcedure procedure doesn't return a message on success
+    res.status(200).json({ success: true });
+  });
+});
+
+
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

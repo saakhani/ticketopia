@@ -8,6 +8,7 @@ const UserPage = () => {
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
 
+
   const userDetails = {
     name: user.name,
     email: user.email,
@@ -24,6 +25,8 @@ const UserPage = () => {
     setLoading(false);
   }, []);
 
+  
+  	//@SAAD: here i want to make request to serve using 'email' to fetch bookings from booking table
     // Example event history data, get this from the server depending on user email
     const eventHistory = [
         { bookingId: "B001", eventName: "Concert", eventDate: "2022-07-10", eventTime: "19:00", ticketCategory: "VIP", seatsBooked: 2, price: "$100", status: "Confirmed" },

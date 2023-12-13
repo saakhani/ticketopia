@@ -4,6 +4,9 @@ import Images from '../assets/Images.js';
 
 const AuthContext = createContext();
 
+//@SAAD: the email that you send here i will use that to fetch data from signup table and set that 
+//below instead of dummy data
+
 export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
@@ -51,7 +54,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{  user, isLoggedIn, login, logout}}>
+    <AuthContext.Provider value={{ user, isLoggedIn, login, logout}}>
       {children}
     </AuthContext.Provider>
   );
