@@ -26,7 +26,7 @@ const UserPage = () => {
   }, []);
 
   
-  	//@SAAD: here i want to make request to serve using 'email' to fetch bookings from booking table
+  	//@SAAD: here i want to make request to serve using 'email' to fetch bookings from booking table. use user.email for this it will update after you login. 
     // Example event history data, get this from the server depending on user email
     const eventHistory = [
         { bookingId: "B001", eventName: "Concert", eventDate: "2022-07-10", eventTime: "19:00", ticketCategory: "VIP", seatsBooked: 2, price: "$100", status: "Confirmed" },

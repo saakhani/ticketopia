@@ -4,6 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useAuth } from '../contexts/AuthContext.js';
 import axios from 'axios';
+const fs = require('fs');
+
+const copyImage = (sourcePath, destinationPath) => {
+  fs.copyFile(sourcePath, destinationPath, (err) => {
+    if (err) {
+      console.log('Error occurred while copying the image: ', err);
+    } else {
+      console.log('Image copied successfully');
+    }
+  });
+};
+
+
 
 const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
   const [usernameLogin, setUsernameLogin] = useState('');
@@ -24,12 +37,14 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
       return;
     }
 
-	console.log('Data being sent from React app:', {
+	  console.log('Data being sent from React app:', {
 		name: nameSignUp,
 		email: usernameSignUp,
 		phone: phoneSignUp,
 		password: passwordSignUp,
 	  });
+
+
 
     // Clear previous error message
     setErrorMessage('');
@@ -46,6 +61,7 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
         const { success, message } = response.data;
 
         if (success) {
+          copyImage('./src/assets/profile-pictures/dummy.jpg', `./src/assets/profile-pictures/${usernameSignUp}.jpg`);
           // Successful signup
           onSignUp();
           setSignUp(false); // Switch to login view after successful signup
@@ -81,8 +97,8 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
       //@SAAD: i dont know how these two functions are working here but jo email opar hai 'email: usernameLogin' 
       //send that to AuthContext and Userpage too
 		  // Successful login
-		  onLogin(); // Assuming onLogin doesn't require a token
-		  login();
+		  onLogin();
+		  login(usernameLogin);
 		} else {
 		  setErrorMessage('Invalid credentials. Please try again.');
 		}
