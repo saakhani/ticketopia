@@ -42,11 +42,13 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({});
 
-  const login = (email) => {
+  const login = (emailParam) => {
     // Perform your login logic
     // set user data from backend
+
+    setEmail(emailParam);
     
-    // use the email that is passed to this function to get name, email, phone from db
+    // use name, email, phone from db using "emailParam"
 
     setUser({
       name: 'Saad Lakhani',     //replace this part with actual information
@@ -60,7 +62,7 @@ export const AuthProvider = ({ children }) => {
     const expirationDate = new Date();
     expirationDate.setDate(expirationDate.getDate() + 7); // Expires in 7 days
     document.cookie = `authToken=your_token_here; expires=${expirationDate.toUTCString()}; secure; path=/`;
-    document.cookie = `userEmail=${email}; expires=${expirationDate.toUTCString()}; secure; path=/`;
+    document.cookie = `userEmail=${emailParam}; expires=${expirationDate.toUTCString()}; secure; path=/`;
   };
 
   const logout = () => {
