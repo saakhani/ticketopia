@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
       name: 'Saad Lakhani',         //replace this part
       email: 'm.lakhani.24471@khi.iba.edu.pk',
       phone: '+92 322 2828114',
-      imgSrc: 'm.lakhani.24471@khi.iba.edu.pk.jpg'
+      imgSrc: 'm.lakhani.24471@khi.iba.edu.pk.jpg' //set this to be the email.jpg
     });
   }, []);
 
