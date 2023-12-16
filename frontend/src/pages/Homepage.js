@@ -6,8 +6,6 @@ import images from "../assets/Images.js";
 import SearchBoxDynamic from "../components/SearchBoxDynamic.js";
 import Login from '../components/LoginSignUp.js';
 import { useAuth } from '../contexts/AuthContext.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import ProfileWindow from '../components/ProfileWindow.js';
 
 

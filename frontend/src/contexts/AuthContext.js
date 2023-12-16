@@ -1,6 +1,5 @@
 // AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import Images from '../assets/Images.js';
 
 const AuthContext = createContext();
 

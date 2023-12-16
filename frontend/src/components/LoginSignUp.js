@@ -9,7 +9,6 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
 	const [passwordLogin, setPasswordLogin] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
 	const [isSignUp, setSignUp] = useState(false);
-	const [confirmPassword] = useState('')
 	const [usernameSignUp, setUsernameSignUp] = useState('');
 	const [passwordSignUp, setPasswordSignUp] = useState('');
 	const [confirmPasswordSignUp, setConfirmPasswordSignUp] = useState('');
@@ -44,7 +43,7 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
 
   };
 
-	const { isLoggedIn, login } = useAuth();
+	const {login } = useAuth();
 
 	const handleLogin = () => {
 		// Mocked user data (replace with check from backend)
@@ -76,8 +75,9 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
 				<input className="password" type="password" placeholder='password' value={passwordLogin} onChange={(e) => setPasswordLogin(e.target.value)} />
 				<button className="login-button" onClick={handleLogin}>login</button>
 				{errorMessage && <div className='error-message'>{errorMessage}</div>}
-				<div className='login-footer'>Don't have an account? 
-					<a href='#' onClick={() => setSignUp(true)}>Sign Up</a>
+				<div className='login-footer'>
+          Don't have an account? 
+					<button className='login-signup-link' onClick={() => setSignUp(true)}>Sign Up</button>
 				</div>
 			</div>
 			)}
@@ -91,8 +91,9 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
       <input className="confirm-password" type="password" placeholder='confirm password' value={confirmPasswordSignUp} onChange={(e) => setConfirmPasswordSignUp(e.target.value)} />
       {errorMessage && <div className='error-message'>{errorMessage}</div>}
       <button className="signup-button" onClick={handleSignUp}>Sign Up</button>
-      <div className='signup-footer'>Already have an account? 
-				<a href='#' onClick={() => setSignUp(false)}>Login</a>
+      <div className='signup-footer'>
+        Already have an account? 
+        <button className='login-signup-link' onClick={() => setSignUp(false)}>Login</button>
 			</div>
 			</div>
 			)}

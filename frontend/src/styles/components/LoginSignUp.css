@@ -92,10 +92,11 @@
 
 .login-footer, .signup-footer {
     font-family: "M PLUS Rounded 1c", Helvetica;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     color: #2a2d3f;
     margin-top: 20px;
+    padding: 0;
     margin-bottom: 10px;
 }
 
@@ -119,3 +120,12 @@
     margin-bottom: 10px;
 }
 
+.login-signup-link {
+    font-weight: 600;
+    color: #0391cb;
+    margin-left: 3px;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}

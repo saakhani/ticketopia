@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import images from "../assets/Images.js";
 import "../styles/components/Header.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useAuth } from '../contexts/AuthContext.js';
 import Login from './LoginSignUp.js';
 
 import SearchBoxStatic from "./SearchBoxStatic.js";
 import ProfileWindow from './ProfileWindow.js';
-import SignUp from './SignUp.js';
 
 function Header({inputQueryHeader}) {
 
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(false);
-  const { isLoggedIn, logout, user } = useAuth();
+  const { isLoggedIn, user } = useAuth();
 
   const loginButtonEvent = (e) => {
     e.preventDefault();

@@ -1,9 +1,6 @@
 import React from "react";
-import images from "../assets/Images.js";
 import "../styles/pages/BookedPage.css";
 import Header from "../components/Header.js";
-
-import SearchBoxStatic from "../components/SearchBoxStatic.js";
 
 const bookedPage = () => {
 
