@@ -128,4 +128,5 @@
     padding: 0;
     background: transparent;
     cursor: pointer;
+    text-decoration: underline;
 }
