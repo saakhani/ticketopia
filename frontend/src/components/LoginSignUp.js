@@ -112,9 +112,9 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
           {errorMessage && <div className='error-message'>{errorMessage}</div>}
           <div className='login-footer'>
             Don't have an account?
-            <a href='#' onClick={() => setSignUp(true)}>
+            <button className='login-signup-link' onClick={() => setSignUp(true)}>
               Sign Up
-            </a>
+            </button>
           </div>
         </div>
       )}
@@ -132,9 +132,9 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
           </button>
           <div className='signup-footer'>
             Already have an account?
-            <a href='#' onClick={() => setSignUp(false)}>
+            <button className='login-signup-link' onClick={() => setSignUp(false)}>
               Login
-            </a>
+            </button>
           </div>
         </div>
       )}
