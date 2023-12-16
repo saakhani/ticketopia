@@ -13,25 +13,63 @@ const UserPage = () => {
     name: user.name,
     email: user.email,
     phone: user.phone,
-};
+ };
 
-    // Example user data
-    useEffect(() => {
-    const userDetails = {
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
+//     // Example user data
+//     useEffect(() => {
+//     const userDetails = {
+//         name: user.name,
+//         email: user.email,
+//         phone: user.phone,
+//     };
+//     setLoading(false);
+//   }, []);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://localhost:8081/fetchTableBooking', {
+          email: user.email,
+        });
+
+        const { success, data } = response.data;
+
+        if (success) {
+          // Process the data and set it in the state
+          const processedData = data.map((booking) => ({
+            bookingId: `B${booking.booking_id}`,
+            eventName: booking.event_name,
+            eventDate: booking.booking_date,
+            eventTime: booking.booking_time,
+            ticketCategory: booking.category,
+            seatsBooked: booking.seatsBooked,
+            price: `$${booking.price}`,
+            status: booking.status,
+          }));
+
+          setEventHistory(processedData);
+        } else {
+          // Handle error
+          console.error('Error fetching data:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Error during API call:', error);
+      } finally {
+        setLoading(false);
+      }
     };
-    setLoading(false);
-  }, []);
+
+    fetchData();
+   }, [user.email]);
 
   
   	//@SAAD: here i want to make request to serve using 'email' to fetch bookings from booking table. use user.email for this it will update after you login. 
     // Example event history data, get this from the server depending on user email
-    const eventHistory = [
-        { bookingId: "B001", eventName: "Concert", eventDate: "2022-07-10", eventTime: "19:00", ticketCategory: "VIP", seatsBooked: 2, price: "$100", status: "Confirmed" },
-        { bookingId: "B002", eventName: "Concert", eventDate: "2022-07-10", eventTime: "19:00", ticketCategory: "General", seatsBooked: 3, price: "$50", status: "Confirmed" },
-    ];
+    // const eventHistory = [
+    //     { bookingId: "B001", eventName: "Concert", eventDate: "2022-07-10", eventTime: "19:00", ticketCategory: "VIP", seatsBooked: 2, price: "$100", status: "Confirmed" },
+    //     { bookingId: "B002", eventName: "Concert", eventDate: "2022-07-10", eventTime: "19:00", ticketCategory: "General", seatsBooked: 3, price: "$50", status: "Confirmed" },
+    // ];
 
     if (loading) {
       return <div class="loading">loading...</div>;

@@ -19,23 +19,57 @@ export const AuthProvider = ({ children }) => {
 
 
 
+  // useEffect(() => {
+  //   // Check if there's a token in cookies
+  //   const storedToken = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  //   if (storedToken) {
+  //     setIsLoggedIn(true);
+  //     setEmail(getEmailFromCookie());
+  //   }
+
+  //   // @Marium fetch information from backend using 'email' and set user accordingly.
+
+  //   setUser({
+  //     name: 'Saad Lakhani',         //replace this part
+  //     email: 'm.lakhani.24471@khi.iba.edu.pk',
+  //     phone: '+92 322 2828114',
+  //     imgSrc: 'm.lakhani.24471@khi.iba.edu.pk.jpg' //set this to be the email.jpg
+  //   });
+  // }, []);
+
   useEffect(() => {
     // Check if there's a token in cookies
     const storedToken = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
     if (storedToken) {
       setIsLoggedIn(true);
       setEmail(getEmailFromCookie());
+  
+      // Fetch user information from backend using 'email'
+      axios.post('http://localhost:8081/fetchUser', {
+        email: getEmailFromCookie(),
+      })
+      .then((response) => {
+        const { success, data } = response.data;
+  
+        if (success) {
+          // Set user information based on the fetched data
+          setUser({
+            name: data.name,
+            email: getEmailFromCookie(),
+            phone: data.phone,
+            imgSrc: `${getEmailFromCookie()}.jpg`,
+          });
+        } else {
+          console.error('Error fetching user data:', response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
     }
-
-    // @Marium fetch information from backend using 'email' and set user accordingly. 
-
-    setUser({
-      name: 'Saad Lakhani',         //replace this part
-      email: 'm.lakhani.24471@khi.iba.edu.pk',
-      phone: '+92 322 2828114',
-      imgSrc: 'm.lakhani.24471@khi.iba.edu.pk.jpg' //set this to be the email.jpg
-    });
   }, []);
+
+  
 
 
 
