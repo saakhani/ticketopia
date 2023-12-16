@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef, isValidElement } from 'react';
+import React, { useState, useEffect, forwardRef} from 'react';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
 import images from '../assets/Images.js';
@@ -7,7 +7,6 @@ import '../styles/components/CustomDatePicker.css';
 
 import Header from '../components/Header.js';
 import { useParams } from 'react-router-dom';
-import { set } from 'date-fns';
 import { useAuth } from '../contexts/AuthContext.js';
 
 const EventPage = () => {
@@ -168,7 +167,7 @@ const EventPage = () => {
       <h1>Event Details</h1>
       <div className="event-body">
         <div className="event-details">
-            <img src={require(`../assets/event-images/${eventDetails.title.toLowerCase().replace(/ /g, '_')}.jpg`)} className="event-image" alt="Event Image" height={400} width={600} />
+            <img src={require(`../assets/event-images/${eventDetails.title.toLowerCase().replace(/ /g, '_')}.jpg`)} className="event-image" alt="Event" height={400} width={600} />
             <h2 className="event-name">{eventDetails.title}</h2>
             <div className="event-venue">
               <img className="location-icon" alt="icon for location" src={images.location_icon} />

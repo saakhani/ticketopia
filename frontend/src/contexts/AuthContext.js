@@ -1,11 +1,9 @@
 // AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import Images from '../assets/Images.js';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
-//@SAAD: the email that you send here i will use that to fetch data from signup table and set that 
-//below instead of dummy data
 
 export const AuthProvider = ({ children }) => {
 
@@ -15,7 +13,9 @@ export const AuthProvider = ({ children }) => {
     return emailCookie ? emailCookie.split('=')[1] : null;
   };
 
-  const [email, setEmail] = useState(getEmailFromCookie());
+  const [userEmail, setUserEmail] = useState(getEmailFromCookie());
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
 
 
 
@@ -42,11 +42,11 @@ export const AuthProvider = ({ children }) => {
     const storedToken = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
     if (storedToken) {
       setIsLoggedIn(true);
-      setEmail(getEmailFromCookie());
+      setUserEmail(getEmailFromCookie());
   
       // Fetch user information from backend using 'email'
       axios.post('http://localhost:8081/fetchUser', {
-        email: getEmailFromCookie(),
+        email: userEmail,
       })
       .then((response) => {
         const { success, data } = response.data;
@@ -55,9 +55,9 @@ export const AuthProvider = ({ children }) => {
           // Set user information based on the fetched data
           setUser({
             name: data.name,
-            email: getEmailFromCookie(),
+            email: userEmail,
             phone: data.phone,
-            imgSrc: `${getEmailFromCookie()}.jpg`,
+            imgSrc: `${userEmail}.jpg`,
           });
         } else {
           console.error('Error fetching user data:', response.data.message);
@@ -67,28 +67,42 @@ export const AuthProvider = ({ children }) => {
         console.error('Error fetching user data:', error);
       });
     }
-  }, []);
+  }, [userEmail]);
 
   
 
 
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
+
 
   const login = (emailParam) => {
     // Perform your login logic
     // set user data from backend
 
-    setEmail(emailParam);
+    setUserEmail(emailParam);
     
     // use name, email, phone from db using "emailParam"
 
-    setUser({
-      name: 'Saad Lakhani',     //replace this part with actual information
-      email: 'm.lakhani.24471@khi.iba.edu.pk',
-      phone: '+92 322 2828114',
-      imgSrc: "dummy.jpg" // @Marium make this email.jpg
+    axios.post('http://localhost:8081/fetchUser', {
+      email: emailParam,
+    })
+    .then((response) => {
+      const { success, data } = response.data;
+
+      if (success) {
+        // Set user information based on the fetched data
+        setUser({
+          name: data.name,
+          email: emailParam,
+          phone: data.phone,
+          imgSrc: `${emailParam}.jpg`,
+        });
+      } else {
+        console.error('Error fetching user data:', response.data.message);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching user data:', error);
     });
 
 

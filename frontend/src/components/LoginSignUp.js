@@ -4,17 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useAuth } from '../contexts/AuthContext.js';
 import axios from 'axios';
-const fs = require('fs');
-
-const copyImage = (sourcePath, destinationPath) => {
-  fs.copyFile(sourcePath, destinationPath, (err) => {
-    if (err) {
-      console.log('Error occurred while copying the image: ', err);
-    } else {
-      console.log('Image copied successfully');
-    }
-  });
-};
 
 
 
@@ -23,7 +12,6 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
   const [passwordLogin, setPasswordLogin] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isSignUp, setSignUp] = useState(false);
-  const [confirmPassword] = useState('');
   const [usernameSignUp, setUsernameSignUp] = useState('');
   const [passwordSignUp, setPasswordSignUp] = useState('');
   const [confirmPasswordSignUp, setConfirmPasswordSignUp] = useState('');
@@ -61,7 +49,6 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
         const { success, message } = response.data;
 
         if (success) {
-          copyImage('./src/assets/profile-pictures/dummy.jpg', `./src/assets/profile-pictures/${usernameSignUp}.jpg`);
           // Successful signup
           onSignUp();
           setSignUp(false); // Switch to login view after successful signup
@@ -75,7 +62,7 @@ const Login = ({ onSignUp, onLogin, onClose, onWindowClick }) => {
       });
   };
 
-  const { isLoggedIn, login } = useAuth();
+  const { login } = useAuth();
 
   const handleLogin = () => {
 	// Make API call to login endpoint

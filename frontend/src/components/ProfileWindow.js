@@ -5,19 +5,19 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useAuth} from '../contexts/AuthContext.js';
 
 const ProfileWindow = ({onWindowClick, onClose }) => {
-    const { isLoggedIn, logout, user } = useAuth();
+	function getImage(imgSrc) {
+    try {
+      return require(`../assets/profile-pictures/${imgSrc}`);
+    } catch (err) {
+      return require('../assets/profile-pictures/dummy.jpg');
+    }
+  }
+
+    const {logout, user } = useAuth();
 
     const name = user.name;
 		const email = user.email;
 		// const profilePicture = require(`../assets/profile-pictures/${email}.jpg`)
-
-    const handleViewProfile = () => {
-        // Handle view profile logic here
-    };
-
-    const handleEventHistory = () => {
-        // Handle event history logic here
-    };
 
 		const handleLogout = () => {
 			if (window.location.pathname === '/user'){
@@ -49,7 +49,7 @@ const ProfileWindow = ({onWindowClick, onClose }) => {
 					<a className='view-profile' href='/user'>view profile</a>
 				</div>
 				<div className='right'>
-					<img className = "profile-image" src={require(`../assets/profile-pictures/${user.imgSrc}`)} alt="Profile" />  
+					<img className = "profile-image" src={getImage(user.imgSrc)} alt="Profile" />  
 					<button className='logout-button' onClick={handleLogout}>
 							<FontAwesomeIcon icon={icon({name: 'right-from-bracket', style: 'solid'})} style={{color: "#0391cb",}} />
 					</button>

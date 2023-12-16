@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import images from "../assets/Images.js";
 import "../styles/components/Header.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useAuth } from '../contexts/AuthContext.js';
 import Login from './LoginSignUp.js';
 
@@ -13,7 +11,7 @@ function Header({inputQueryHeader}) {
 
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(false);
-  const { isLoggedIn, logout, user } = useAuth();
+  const { isLoggedIn, user } = useAuth();
 
   const loginButtonEvent = (e) => {
     e.preventDefault();
@@ -45,6 +43,14 @@ function Header({inputQueryHeader}) {
     setIsLoginVisible(false);
   }
 
+  function getImage(imgSrc) {
+    try {
+      return require(`../assets/profile-pictures/${imgSrc}`);
+    } catch (err) {
+      return require('../assets/profile-pictures/dummy.jpg');
+    }
+  }
+
     return(
       <div className="header">
         {isLoginVisible && <div className="overlay" onClick={closeLoginWindow}>
@@ -71,7 +77,7 @@ function Header({inputQueryHeader}) {
         </button>)
         }
         {isLoggedIn && (<button className = "profile-button-header" onClick={profileButtonEvent}>
-          <img className = "profile-image" src={require(`../assets/profile-pictures/${user.imgSrc}`)} alt="Profile" />      
+          <img className = "profile-image" src={getImage(user.imgSrc)} alt="Profile" />      
           {/* <FontAwesomeIcon icon={icon({name: 'user', style: 'solid'})} style={{color: "#0391cb",}} /> */}
         </button>)
         }

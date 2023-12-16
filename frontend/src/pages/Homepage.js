@@ -6,13 +6,19 @@ import images from "../assets/Images.js";
 import SearchBoxDynamic from "../components/SearchBoxDynamic.js";
 import Login from '../components/LoginSignUp.js';
 import { useAuth } from '../contexts/AuthContext.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import ProfileWindow from '../components/ProfileWindow.js';
 
 
   
 const Homepage = () => {
+
+  function getImage(imgSrc) {
+    try {
+      return require(`../assets/profile-pictures/${imgSrc}`);
+    } catch (err) {
+      return require('../assets/profile-pictures/dummy.jpg');
+    }
+  }
 
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const { isLoggedIn, user} = useAuth();
@@ -69,17 +75,13 @@ const Homepage = () => {
         {isLoggedIn && (
           <button className = "profile-button"
             onClick={profileButtonEvent}>      
-          <img className = "profile-image" src={require(`../assets/profile-pictures/${user.imgSrc}`)} alt="Profile" /> 
+          <img className = "profile-image" src={getImage(user.imgSrc)} alt="Profile" /> 
           </button>
         )}
                 {isProfileVisible && <div className='profile-overlay' onClick={closeProfileWindow}>
           <ProfileWindow 
             onWindowClick={(e) => e.stopPropagation()}
             onClose = {closeProfileWindow}
-            user={{
-              email: 'user@example.com',
-              name: 'John Doe'
-            }} 
           />
         </div>
         }

@@ -34,14 +34,6 @@ function SearchBoxStatic({inputQuery}) {
     }
   }
 
-
-
-  //check if any element from search-wrapper is in focus or not
-  const isTextBoxFocused = () => {
-    return document.activeElement === document.getElementById("search-wrapper");
-  };
-
-
   return (
     <div className='search-wrapper-static'>
       <input

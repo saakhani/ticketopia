@@ -2,11 +2,21 @@ import React, { useEffect, useState } from 'react';
 import '../styles/pages/UserPage.css';
 import {useAuth} from '../contexts/AuthContext.js';
 import Header from '../components/Header.js';
+import axios from 'axios';
 
 const UserPage = () => {
 
+	function getImage(imgSrc) {
+    try {
+      return require(`../assets/profile-pictures/${imgSrc}`);
+    } catch (err) {
+      return require('../assets/profile-pictures/dummy.jpg');
+    }
+  }
+
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
+	const [eventHistory, setEventHistory] = useState([]);
 
 
   const userDetails = {
@@ -85,7 +95,7 @@ const UserPage = () => {
 					<div className="user-details-content">
 						<div className="user-image">
 							{userDetails.email && (
-								<img className = "profile-image-user-page" src={require(`../assets/profile-pictures/${userDetails.email}.jpg`)} alt="Profile" />
+								<img className = "profile-image-user-page" src={getImage(user.imgSrc)} alt="Profile" />
 							)}
 							{!userDetails.email && (
 								<img className = "profile-image-user-page" src={require(`../assets/profile-pictures/dummy.jpg`)} alt="Profile" />

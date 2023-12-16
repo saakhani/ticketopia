@@ -2,7 +2,7 @@
 
 import React from 'react';
 import '../styles/components/SearchResultCard.css'; // Import the CSS file
-import { Outlet, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
  
 const SearchResultCard = ({ eventDetailsH }) => {
   const eventDetails = eventDetailsH;
